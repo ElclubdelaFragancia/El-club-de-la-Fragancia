@@ -1,1 +1,197 @@
-hola
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Club de la Fragancia</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#0b0b0f;
+color:white;
+}
+
+header{
+padding:20px;
+text-align:center;
+font-size:24px;
+font-weight:bold;
+background:#111;
+}
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+padding:20px;
+}
+
+.card{
+background:#1a1a1f;
+padding:15px;
+border-radius:12px;
+text-align:center;
+}
+
+button{
+background:#d4af37;
+border:none;
+padding:10px;
+margin-top:10px;
+cursor:pointer;
+font-weight:bold;
+border-radius:8px;
+}
+
+.cart{
+position:fixed;
+right:10px;
+top:80px;
+background:#111;
+padding:15px;
+width:260px;
+border-radius:10px;
+}
+
+.step{
+display:none;
+padding:20px;
+}
+
+.active{
+display:block;
+}
+
+input{
+width:100%;
+padding:8px;
+margin:5px 0;
+}
+</style>
+</head>
+
+<body>
+
+<header>💎 Club de la Fragancia</header>
+
+<!-- PRODUCTOS -->
+<div class="products">
+<div class="card">
+<h3>Dior Sauvage</h3>
+<p>$10</p>
+<button onclick="addToCart('Dior Sauvage',10)">Agregar</button>
+</div>
+
+<div class="card">
+<h3>Versace Eros</h3>
+<p>$12</p>
+<button onclick="addToCart('Versace Eros',12)">Agregar</button>
+</div>
+
+<div class="card">
+<h3>Bleu de Chanel</h3>
+<p>$15</p>
+<button onclick="addToCart('Bleu de Chanel',15)">Agregar</button>
+</div>
+</div>
+
+<!-- CARRITO -->
+<div class="cart">
+<h3>🛒 Carrito</h3>
+<div id="cartItems"></div>
+<p>Total: $<span id="total">0</span></p>
+<button onclick="goCheckout()">Finalizar pedido</button>
+</div>
+
+<!-- CHECKOUT PASO 1 -->
+<div class="step active" id="step1">
+<h2>Datos del cliente</h2>
+<input id="name" placeholder="Nombre">
+<input id="phone" placeholder="Teléfono">
+<button onclick="nextStep(2)">Continuar</button>
+</div>
+
+<!-- CHECKOUT PASO 2 -->
+<div class="step" id="step2">
+<h2>Envío</h2>
+<input id="address" placeholder="Dirección">
+<input id="city" placeholder="Ciudad">
+<button onclick="nextStep(3)">Continuar</button>
+</div>
+
+<!-- CHECKOUT PASO 3 -->
+<div class="step" id="step3">
+<h2>Confirmar pedido</h2>
+<p>Revisa tu pedido y envíalo por WhatsApp</p>
+
+<button onclick="sendWhatsApp()">📲 Enviar pedido</button>
+</div>
+
+<script>
+
+let cart = [];
+
+function addToCart(name, price){
+cart.push({name, price});
+renderCart();
+}
+
+function renderCart(){
+let html = "";
+let total = 0;
+
+cart.forEach(p=>{
+html += `<p>${p.name} - $${p.price}</p>`;
+total += p.price;
+});
+
+document.getElementById("cartItems").innerHTML = html;
+document.getElementById("total").innerText = total;
+}
+
+function goCheckout(){
+document.getElementById("step1").classList.add("active");
+window.scrollTo(0,0);
+}
+
+function nextStep(step){
+
+document.querySelectorAll(".step").forEach(s=>s.classList.remove("active"));
+document.getElementById("step"+step).classList.add("active");
+window.scrollTo(0,0);
+}
+
+function sendWhatsApp(){
+
+let name = document.getElementById("name").value;
+let phone = document.getElementById("phone").value;
+let address = document.getElementById("address").value;
+let city = document.getElementById("city").value;
+
+let items = "";
+let total = 0;
+
+cart.forEach(p=>{
+items += `- ${p.name} $${p.price}%0A`;
+total += p.price;
+});
+
+let msg =
+`🛍️ Nuevo pedido Club de la Fragancia%0A
+Nombre: ${name}%0A
+Tel: ${phone}%0A
+Dirección: ${address}, ${city}%0A
+%0AProductos:%0A${items}
+%0ATotal: $${total}`;
+
+let url = "https://wa.me/593999999999?text=" + msg;
+
+window.open(url,"_blank");
+}
+
+</script>
+
+</body>
+</html>
