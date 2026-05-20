@@ -887,16 +887,17 @@ return;
 
 const fecha =
 document.getElementById('fecha').value;
+if(cart.length === 0){
+alert('Agrega productos al carrito');
+return;
+}
 
 let productos = '';
 
-if(cart.length === 0){
-productos = 'No hay productos en el carrito';
-}else{
 cart.forEach(p=>{
 productos += '- ' + p + '%0A';
 });
-}
+
 
 const mensaje =
 `🛍️ Pedido Club de la Fragancia
