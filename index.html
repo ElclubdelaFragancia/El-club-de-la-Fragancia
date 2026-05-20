@@ -650,18 +650,36 @@ rows.forEach(row => {
 
 const cols = row.split(',');
 
-const id = cols[0]?.trim();
-const nombre = cols[1]?.trim();
-const descripcion = cols[2]?.trim();
-const notas = cols[3]?.trim();
-const ocasiones = cols[4]?.trim();
+const nombre =
+cols[0]?.trim();
 
-const precio3 = cols[5]?.trim();
-const precio5 = cols[6]?.trim();
-const precio10 = cols[7]?.trim();
-const precio100 = cols[8]?.trim();
+const precio3 =
+cols[1]?.trim();
 
-if(!id || !nombre) return;
+const precio5 =
+cols[2]?.trim();
+
+const precio10 =
+cols[3]?.trim();
+
+const precio100 =
+cols[4]?.trim();
+
+const tamano =
+cols[5]?.trim();
+
+const notas =
+cols[6]?.trim();
+
+if(!nombre) return;
+
+const id =
+nombre
+.toLowerCase()
+.replaceAll(' ','')
+.replaceAll('|','')
+.replaceAll('.','')
+.replaceAll(',','');
 
 document.getElementById('productsContainer')
 .innerHTML += `
@@ -679,44 +697,48 @@ src="images/${id}3ml.jpg">
 
 <h3>${nombre}</h3>
 
-<p>${descripcion}</p>
-
 <p>
+
 <strong>Notas:</strong><br>
 ${notas}
+
 </p>
 
 <p>
-<strong>Ocasiones:</strong><br>
-${ocasiones}
+
+<strong>Botella:</strong>
+${tamano}
+
 </p>
 
 <div class="size-options">
 
 <button class="size-btn"
-onclick="changeImage('${id}','3ml',${precio3})">
+onclick="changeImage('${id}','3ml','${precio3}')">
 3ml
 </button>
 
 <button class="size-btn"
-onclick="changeImage('${id}','5ml',${precio5})">
+onclick="changeImage('${id}','5ml','${precio5}')">
 5ml
 </button>
 
 <button class="size-btn"
-onclick="changeImage('${id}','10ml',${precio10})">
+onclick="changeImage('${id}','10ml','${precio10}')">
 10ml
 </button>
 
 <button class="size-btn"
-onclick="changeImage('${id}','100ml',${precio100})">
+onclick="changeImage('${id}','100ml','${precio100}')">
 Botella
 </button>
 
 </div>
 
 <div class="price" id="${id}Price">
+
 $${precio3}
+
 </div>
 
 <button class="buy-btn"
@@ -844,7 +866,7 @@ const mensaje =
 
 👤 Cliente: ${nombre}
 
-📅 Fecha de entrega:
+📅 Fecha:
 ${fecha}
 
 🚚 Modalidad:
@@ -861,6 +883,5 @@ window.open(
 }
 
 </script>
-
 </body>
 </html>
