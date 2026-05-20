@@ -4,35 +4,48 @@ Comprar por WhatsApp
 </div>
 </div>
 
-<!-- PRODUCTO 3 -->
-<div class="product-card">
+<script>
+<div class="sizes">
 
-<div class="product-image">
-<img id="img3" src="images/35_edited.jpg">
-</div>
-
-<div class="product-info">
-<h3>Bleu de Chanel</h3>
-
-<p>
-Elegancia moderna con notas cítricas y amaderadas.
-Una de las fragancias más versátiles y refinadas.
-</p>
-
-<div class="size-options">
-<button class="size-btn" onclick="changeSize('img3','3')">3ml</button>
-<button class="size-btn" onclick="changeSize('img3','5')">5ml</button>
-<button class="size-btn" onclick="changeSize('img3','10')">10ml</button>
-</div>
-
-<div class="price">Desde $6</div>
-
-<button class="buy-btn" onclick="buyProduct('Bleu de Chanel')">
-Comprar por WhatsApp
+<button onclick="changeImage('clubdenuit','3ml')">
+3ml
 </button>
-</div>
+
+<button onclick="changeImage('clubdenuit','5ml')">
+5ml
+</button>
+
+<button onclick="changeImage('clubdenuit','10ml')">
+10ml
+</button>
+
+<button onclick="changeImage('clubdenuit','100ml')">
+Botella
+</button>
+
 </div>
 
+</div>
+const prices = {
+moschino:{
+'3ml':4,
+'5ml':7,
+'10ml':12,
+'100ml':95
+}
+};
+
+function changeImage(product,size){
+
+document.getElementById(product + 'Image').src =
+`images/${product}${size}.jpg`;
+
+document.getElementById(product + 'Price').innerText =
+'$' + prices[product][size];
+
+}
+
+</script>
 </div>
 </section>
 
