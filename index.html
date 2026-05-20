@@ -134,8 +134,9 @@ margin-top:50px;
 background:#111;
 padding:20px;
 border-radius:20px;
-width:240px;
+width:280px;
 border:1px solid #222;
+text-align:center;
 }
 
 .decant-card img{
@@ -143,11 +144,13 @@ width:100%;
 border-radius:15px;
 background:white;
 padding:15px;
+height:280px;
+object-fit:contain;
 }
 
 .decant-card h3{
-margin-top:15px;
-font-size:24px;
+margin-top:20px;
+font-size:28px;
 }
 
 .products-grid{
@@ -399,18 +402,57 @@ y práctica.
 <div class="decant-grid">
 
 <div class="decant-card">
-<img src="images/33_edited.jpg">
+
+<img src="images/decant3ml.jpg">
+
 <h3>3ml</h3>
+
+<p style="margin-top:15px;color:#ccc;line-height:1.8;">
+
+Tamaño 6cm de alto x 1.4cm de grosor
+
+<br><br>
+
+(50-55 atomizaciones)
+
+</p>
+
 </div>
 
 <div class="decant-card">
-<img src="images/34_edited.jpg">
+
+<img src="images/decant5ml.jpg">
+
 <h3>5ml</h3>
+
+<p style="margin-top:15px;color:#ccc;line-height:1.8;">
+
+Tamaño 7.6cm de alto x 1.4cm de grosor
+
+<br><br>
+
+(85-90 atomizaciones)
+
+</p>
+
 </div>
 
 <div class="decant-card">
-<img src="images/35_edited.jpg">
+
+<img src="images/decant10ml.jpg">
+
 <h3>10ml</h3>
+
+<p style="margin-top:15px;color:#ccc;line-height:1.8;">
+
+Tamaño 12cm de alto x 1.4cm de grosor
+
+<br><br>
+
+(150-160 atomizaciones)
+
+</p>
+
 </div>
 
 </div>
@@ -438,112 +480,7 @@ border:1px solid #222;
 Catálogo Premium
 </h2>
 
-<div class="products-grid">
-
-<!-- MOSCHINO -->
-
-<div class="product-card">
-
-<div class="product-image">
-<img id="moschinoImage" src="images/moschino3ml.jpg">
-</div>
-
-<div class="product-info">
-
-<h3>Moschino Toy Boy</h3>
-
-<p>
-Fragancia moderna y elegante con notas especiadas.
-</p>
-
-<div class="size-options">
-
-<button class="size-btn"
-onclick="changeImage('moschino','3ml',4)">
-3ml
-</button>
-
-<button class="size-btn"
-onclick="changeImage('moschino','5ml',7)">
-5ml
-</button>
-
-<button class="size-btn"
-onclick="changeImage('moschino','10ml',12)">
-10ml
-</button>
-
-<button class="size-btn"
-onclick="changeImage('moschino','100ml',95)">
-Botella
-</button>
-
-</div>
-
-<div class="price" id="moschinoPrice">
-$4
-</div>
-
-<button class="buy-btn"
-onclick="addToCart('Moschino Toy Boy')">
-Agregar al carrito
-</button>
-
-</div>
-</div>
-
-<!-- CLUB DE NUIT -->
-
-<div class="product-card">
-
-<div class="product-image">
-<img id="clubdenuitImage" src="images/clubdenuit3ml.jpg">
-</div>
-
-<div class="product-info">
-
-<h3>Club de Nuit Intense Man</h3>
-
-<p>
-Aroma sofisticado con notas cítricas y amaderadas.
-</p>
-
-<div class="size-options">
-
-<button class="size-btn"
-onclick="changeImage('clubdenuit','3ml',5)">
-3ml
-</button>
-
-<button class="size-btn"
-onclick="changeImage('clubdenuit','5ml',8)">
-5ml
-</button>
-
-<button class="size-btn"
-onclick="changeImage('clubdenuit','10ml',14)">
-10ml
-</button>
-
-<button class="size-btn"
-onclick="changeImage('clubdenuit','100ml',110)">
-Botella
-</button>
-
-</div>
-
-<div class="price" id="clubdenuitPrice">
-$5
-</div>
-
-<button class="buy-btn"
-onclick="addToCart('Club de Nuit Intense Man')">
-Agregar al carrito
-</button>
-
-</div>
-</div>
-
+<div class="products-grid" id="productsContainer">
 </div>
 
 </section>
@@ -566,16 +503,6 @@ Clientes reales compartiendo sus experiencias.
 <img src="images/testimonio1.jpg">
 </div>
 
-<div class="product-info">
-
-<h3>Cliente Verificado</h3>
-
-<p>
-Excelente presentación y perfumes totalmente originales.
-</p>
-
-</div>
-
 </div>
 
 <div class="product-card">
@@ -584,32 +511,12 @@ Excelente presentación y perfumes totalmente originales.
 <img src="images/testimonio2.jpg">
 </div>
 
-<div class="product-info">
-
-<h3>Cliente Verificado</h3>
-
-<p>
-Muy buena atención y entrega rápida.
-</p>
-
-</div>
-
 </div>
 
 <div class="product-card">
 
 <div class="review-image">
 <img src="images/testimonio3.jpg">
-</div>
-
-<div class="product-info">
-
-<h3>Cliente Verificado</h3>
-
-<p>
-Fragancias premium y excelente duración.
-</p>
-
 </div>
 
 </div>
@@ -621,8 +528,6 @@ Fragancias premium y excelente duración.
 <div class="cart-button" onclick="openCheckout()">
 🛒
 </div>
-
-<!-- MODAL CHECKOUT -->
 
 <div class="modal" id="checkoutModal">
 
@@ -740,6 +645,104 @@ fechaSelect.appendChild(option);
 
 let cart = [];
 
+const sheetURL =
+'https://docs.google.com/spreadsheets/d/e/2PACX-1vR-f7qVxZ-oOGhGkSTs7l4hIaepmdzieynclQWVjK7FA-vTE37mLnIK8pZoaGZvCYkH7J6T1X_yxv-T/pub?output=csv';
+
+fetch(sheetURL)
+.then(res => res.text())
+.then(data => {
+
+const rows =
+data.split('\n').slice(1);
+
+rows.forEach(row => {
+
+const cols = row.split(',');
+
+const id = cols[0];
+const nombre = cols[1];
+const descripcion = cols[2];
+const notas = cols[3];
+const ocasiones = cols[4];
+
+const precio3 = cols[5];
+const precio5 = cols[6];
+const precio10 = cols[7];
+const precio100 = cols[8];
+
+document.getElementById('productsContainer')
+.innerHTML += `
+
+<div class="product-card">
+
+<div class="product-image">
+
+<img id="${id}Image"
+src="images/${id}3ml.jpg">
+
+</div>
+
+<div class="product-info">
+
+<h3>${nombre}</h3>
+
+<p>${descripcion}</p>
+
+<p>
+<strong>Notas:</strong><br>
+${notas}
+</p>
+
+<p>
+<strong>Ocasiones:</strong><br>
+${ocasiones}
+</p>
+
+<div class="size-options">
+
+<button class="size-btn"
+onclick="changeImage('${id}','3ml',${precio3})">
+3ml
+</button>
+
+<button class="size-btn"
+onclick="changeImage('${id}','5ml',${precio5})">
+5ml
+</button>
+
+<button class="size-btn"
+onclick="changeImage('${id}','10ml',${precio10})">
+10ml
+</button>
+
+<button class="size-btn"
+onclick="changeImage('${id}','100ml',${precio100})">
+Botella
+</button>
+
+</div>
+
+<div class="price" id="${id}Price">
+$${precio3}
+</div>
+
+<button class="buy-btn"
+onclick="addToCart('${nombre}')">
+
+Agregar al carrito
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+});
+
 function changeImage(product,size,price){
 
 document.getElementById(product + 'Image').src =
@@ -852,4 +855,3 @@ window.open(
 
 </body>
 </html>
-
