@@ -609,26 +609,17 @@ Enviar Pedido
 
 window.onload = function(){
 
-const fechaSelect =
-document.getElementById('fecha');
+const fechaSelect = document.getElementById('fecha');
 
 for(let i = 0; i < 15; i++){
-
 const fecha = new Date();
-
 fecha.setDate(fecha.getDate() + i);
 
-const option =
-document.createElement('option');
-
-option.value =
-fecha.toLocaleDateString();
-
-option.text =
-fecha.toLocaleDateString();
+const option = document.createElement('option');
+option.value = fecha.toLocaleDateString();
+option.text = fecha.toLocaleDateString();
 
 fechaSelect.appendChild(option);
-
 }
 
 }
@@ -642,19 +633,18 @@ fetch(sheetURL)
 .then(res => res.text())
 .then(data => {
 
-const rows =
-data.trim().split('\n').slice(1);
+const rows = data.trim().split('\n').slice(1);
 
 rows.forEach(row => {
 
 const cols = row.split(',');
 
+// 📌 NUEVO ORDEN CORRECTO SEGÚN TU SHEET:
 const id = cols[0]?.trim();
 const nombre = cols[1]?.trim();
 const descripcion = cols[2]?.trim();
 const notas = cols[3]?.trim();
 const ocasiones = cols[4]?.trim();
-
 const precio3 = cols[5]?.trim();
 const precio5 = cols[6]?.trim();
 const precio10 = cols[7]?.trim();
@@ -662,77 +652,74 @@ const precio100 = cols[8]?.trim();
 
 if(!id || !nombre) return;
 
-document.getElementById('productsContainer')
-.innerHTML += `
+const precio3n = Number(precio3) || 0;
+const precio5n = Number(precio5) || 0;
+const precio10n = Number(precio10) || 0;
+const precio100n = Number(precio100) || 0;
+
+document.getElementById('productsContainer').innerHTML += `
 
 <div class="product-card">
 
 <div class="product-image">
-
-<img id="${id}Image"
-src="images/${id}3ml.jpg">
-
+<img id="${id}Image" src="images/${id}3ml.jpg">
 </div>
 
 <div class="product-info">
 
 <h3>${nombre}</h3>
 
-<p>${descripcion}</p>
+<p>${descripcion || ''}</p>
 
-<p>
-<strong>Notas:</strong><br>
-${notas}
-</p>
+<p><strong>Notas:</strong><br>${notas || ''}</p>
 
-<p>
-<strong>Ocasiones:</strong><br>
-${ocasiones}
-</p>
+<p><strong>Ocasiones:</strong><br>${ocasiones || ''}</p>
 
 <div class="size-options">
 
 <button class="size-btn"
-onclick="changeImage('${id}','3ml',${precio3})">
+onclick="changeImage('${id}','3ml',${precio3n})">
 3ml
 </button>
 
 <button class="size-btn"
-onclick="changeImage('${id}','5ml',${precio5})">
+onclick="changeImage('${id}','5ml',${precio5n})">
 5ml
 </button>
 
 <button class="size-btn"
-onclick="changeImage('${id}','10ml',${precio10})">
+onclick="changeImage('${id}','10ml',${precio10n})">
 10ml
 </button>
 
 <button class="size-btn"
-onclick="changeImage('${id}','100ml',${precio100})">
+onclick="changeImage('${id}','100ml',${precio100n})">
 Botella
 </button>
 
 </div>
 
 <div class="price" id="${id}Price">
-$${precio3}
+$${precio3n}
 </div>
 
 <button class="buy-btn"
 onclick="addToCart('${nombre}')">
-
 Agregar al carrito
-
 </button>
 
 </div>
-
 </div>
 
 `;
 
 });
 
+})
+.catch(err => {
+console.error("Error cargando Sheet:", err);
+document.getElementById('productsContainer').innerHTML =
+"<p style='color:white;text-align:center'>Error cargando catálogo</p>";
 });
 
 function changeImage(product,size,price){
@@ -746,104 +733,79 @@ document.getElementById(product + 'Price').innerText =
 }
 
 function addToCart(product){
-
 cart.push(product);
-
 alert(product + ' agregado al carrito');
-
 }
 
 function openCheckout(){
-
-document.getElementById('checkoutModal')
-.style.display='flex';
-
+document.getElementById('checkoutModal').style.display='flex';
 }
 
 function closeCheckout(){
-
-document.getElementById('checkoutModal')
-.style.display='none';
-
+document.getElementById('checkoutModal').style.display='none';
 }
 
 function toggleDelivery(){
-
-const modalidad =
-document.getElementById('modalidad').value;
+const modalidad = document.getElementById('modalidad').value;
 
 if(modalidad === 'entrega'){
-
-document.getElementById('deliveryFields')
-.classList.remove('hidden');
-
+document.getElementById('deliveryFields').classList.remove('hidden');
 }else{
-
-document.getElementById('deliveryFields')
-.classList.add('hidden');
-
+document.getElementById('deliveryFields').classList.add('hidden');
 }
-
 }
 
 function toggleCiudad(){
 
-const ciudad =
-document.getElementById('ciudad').value;
+const ciudad = document.getElementById('ciudad').value;
 
-document.getElementById('quitoFields')
-.classList.add('hidden');
-
-document.getElementById('fueraFields')
-.classList.add('hidden');
+document.getElementById('quitoFields').classList.add('hidden');
+document.getElementById('fueraFields').classList.add('hidden');
 
 if(ciudad === 'quito'){
-
-document.getElementById('quitoFields')
-.classList.remove('hidden');
-
+document.getElementById('quitoFields').classList.remove('hidden');
 }
 
 if(ciudad === 'fuera'){
-
-document.getElementById('fueraFields')
-.classList.remove('hidden');
-
+document.getElementById('fueraFields').classList.remove('hidden');
 }
 
 }
 
 function sendWhatsApp(){
 
-const nombre =
-document.getElementById('nombre').value.trim();
+const nombre = document.getElementById('nombre').value.trim();
 
 if(nombre === ''){
-
 alert('Por favor ingresa nombres y apellidos');
-
 return;
-
 }
 
-const fecha =
-document.getElementById('fecha').value;
+const modalidad = document.getElementById('modalidad').value;
 
-const modalidad =
-document.getElementById('modalidad').value;
+if(modalidad === ''){
+alert('Selecciona una modalidad de venta');
+return;
+}
+
+const fecha = document.getElementById('fecha').value;
 
 let productos = '';
+
+if(cart.length === 0){
+alert('Agrega productos al carrito');
+return;
+}
 
 cart.forEach(p=>{
 productos += '- ' + p + '%0A';
 });
 
-const mensaje =
-`🛍️ Pedido Club de la Fragancia
+const mensaje = `🛍️ Pedido Club de la Fragancia
 
 👤 Cliente: ${nombre}
 
-📅 Fecha de entrega:
+📅 Fecha:
 ${fecha}
 
 🚚 Modalidad:
