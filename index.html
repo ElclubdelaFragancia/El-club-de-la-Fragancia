@@ -485,6 +485,25 @@ border:1px solid #222;
 </section>
 
 <section class="section" id="catalogo">
+  <input
+type="text"
+id="searchInput"
+placeholder="Buscar perfume o marca..."
+style="
+width:100%;
+max-width:500px;
+margin:30px auto;
+display:block;
+padding:16px;
+border:none;
+border-radius:14px;
+background:#111;
+color:white;
+font-size:16px;
+outline:none;
+border:1px solid #222;
+"
+/>
 
 <h2 class="section-title">
 Catálogo Premium
@@ -647,8 +666,36 @@ fechaSelect.appendChild(option);
 
 }
 
+document
+.getElementById('searchInput')
+.addEventListener('input',function(){
+
+const value =
+this.value.toLowerCase();
+
+const cards =
+document.querySelectorAll('.product-card');
+
+cards.forEach(card=>{
+
+const text =
+card.innerText.toLowerCase();
+
+if(text.includes(value)){
+
+card.style.display='block';
+
+}else{
+
+card.style.display='none';
+
 }
 
+});
+
+});
+
+}
 let cart = [];
 
 const sheetURL =
@@ -826,24 +873,30 @@ const nombre =
 document.getElementById('nombre').value.trim();
 
 if(nombre === ''){
-
 alert('Por favor ingresa nombres y apellidos');
-
 return;
+}
 
+const modalidad =
+document.getElementById('modalidad').value;
+
+if(modalidad === ''){
+alert('Selecciona una modalidad de venta');
+return;
 }
 
 const fecha =
 document.getElementById('fecha').value;
 
-const modalidad =
-document.getElementById('modalidad').value;
-
 let productos = '';
 
+if(cart.length === 0){
+productos = 'No hay productos en el carrito';
+}else{
 cart.forEach(p=>{
 productos += '- ' + p + '%0A';
 });
+}
 
 const mensaje =
 `🛍️ Pedido Club de la Fragancia
@@ -860,13 +913,8 @@ ${modalidad}
 ${productos}`;
 
 window.open(
-`https://wa.me/0995199354?text=${encodeURIComponent(mensaje)}`,
+`https://wa.me/593995199354?text=${encodeURIComponent(mensaje)}`,
 '_blank'
 );
-
+  
 }
-
-</script>
-
-</body>
-</html>
