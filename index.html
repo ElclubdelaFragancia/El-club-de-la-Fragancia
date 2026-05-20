@@ -12,12 +12,7 @@
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-scroll-behavior:smooth;
-}
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
 
 body{
 font-family:'Poppins',sans-serif;
@@ -47,10 +42,7 @@ color:#d4af37;
 letter-spacing:2px;
 }
 
-nav{
-display:flex;
-gap:25px;
-}
+nav{display:flex;gap:25px;}
 
 nav a{
 text-decoration:none;
@@ -59,9 +51,7 @@ font-size:15px;
 transition:.3s;
 }
 
-nav a:hover{
-color:#d4af37;
-}
+nav a:hover{color:#d4af37;}
 
 .hero{
 height:100vh;
@@ -77,18 +67,8 @@ background-size:cover;
 background-position:center;
 }
 
-.hero h1{
-font-size:75px;
-margin-bottom:20px;
-}
-
-.hero p{
-font-size:20px;
-max-width:700px;
-margin:auto;
-line-height:1.8;
-color:#ddd;
-}
+.hero h1{font-size:75px;margin-bottom:20px;}
+.hero p{font-size:20px;max-width:700px;margin:auto;line-height:1.8;color:#ddd;}
 
 .hero button{
 margin-top:35px;
@@ -102,9 +82,7 @@ cursor:pointer;
 font-size:16px;
 }
 
-.section{
-padding:100px 20px;
-}
+.section{padding:100px 20px;}
 
 .section-title{
 text-align:center;
@@ -148,11 +126,6 @@ height:280px;
 object-fit:contain;
 }
 
-.decant-card h3{
-margin-top:20px;
-font-size:28px;
-}
-
 .products-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
@@ -170,9 +143,7 @@ border:1px solid #222;
 transition:.3s;
 }
 
-.product-card:hover{
-transform:translateY(-5px);
-}
+.product-card:hover{transform:translateY(-5px);}
 
 .product-image{
 background:white;
@@ -189,14 +160,9 @@ max-height:300px;
 object-fit:contain;
 }
 
-.product-info{
-padding:25px;
-}
+.product-info{padding:25px;}
 
-.product-info h3{
-font-size:28px;
-margin-bottom:15px;
-}
+.product-info h3{font-size:28px;margin-bottom:15px;}
 
 .product-info p{
 color:#bbb;
@@ -204,12 +170,7 @@ line-height:1.8;
 margin-bottom:20px;
 }
 
-.size-options{
-display:flex;
-gap:10px;
-flex-wrap:wrap;
-margin-bottom:20px;
-}
+.size-options{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;}
 
 .size-btn{
 flex:1;
@@ -284,12 +245,9 @@ max-width:550px;
 max-height:90vh;
 overflow:auto;
 border:1px solid #222;
-position:relative;
 }
 
-.modal-content h2{
-margin-bottom:25px;
-}
+.modal-content h2{margin-bottom:20px;}
 
 .modal-content input,
 .modal-content select{
@@ -313,20 +271,9 @@ cursor:pointer;
 margin-top:10px;
 }
 
-.close-btn{
-background:#222 !important;
-color:white !important;
-}
+.close-btn{background:#222 !important;color:white !important;}
 
-.review-image{
-background:white;
-padding:15px;
-}
-
-.review-image img{
-width:100%;
-border-radius:15px;
-}
+.hidden{display:none;}
 
 footer{
 padding:40px 20px;
@@ -335,22 +282,9 @@ background:#000;
 border-top:1px solid #222;
 }
 
-.hidden{
-display:none;
-}
-
 @media(max-width:768px){
-
-.hero h1{
-font-size:42px;
-}
-
-header{
-padding:20px;
-flex-direction:column;
-gap:15px;
-}
-
+.hero h1{font-size:42px;}
+header{flex-direction:column;gap:15px;padding:20px;}
 }
 
 </style>
@@ -360,258 +294,57 @@ gap:15px;
 <body>
 
 <header>
-
-<div class="logo">
-CLUB DE LA FRAGANCIA
-</div>
-
+<div class="logo">CLUB DE LA FRAGANCIA</div>
 <nav>
 <a href="#inicio">Inicio</a>
 <a href="#catalogo">Catálogo</a>
-<a href="#reviews">Reseñas</a>
 </nav>
-
 </header>
 
 <section class="hero" id="inicio">
-
 <div>
-
 <h1>Club de la Fragancia</h1>
-
-<p>
-Descubre fragancias originales en presentaciones de
-3ml, 5ml, 10ml o botella completa.
-</p>
-
-<button onclick="document.getElementById('catalogo').scrollIntoView()">
-Explorar Catálogo
-</button>
-
+<p>Descubre fragancias originales en decants accesibles.</p>
+<button onclick="document.getElementById('catalogo').scrollIntoView()">Explorar</button>
 </div>
-
-</section>
-
-<section class="section">
-
-<h2 class="section-title">
-¿Qué es un Decant?
-</h2>
-
-<p class="section-text">
-Un decant es una pequeña cantidad de perfume original
-extraída directamente de la botella auténtica.
-Te permite probar fragancias exclusivas de forma más accesible
-y práctica.
-</p>
-
-<div class="decant-grid">
-
-<div class="decant-card">
-
-<img src="images/decant3ml.jpg">
-
-<h3>3ml</h3>
-
-<p style="margin-top:15px;color:#ccc;line-height:1.8;">
-Tamaño 6cm de alto x 1.4cm de grosor
-<br><br>
-(50-55 atomizaciones)
-</p>
-
-</div>
-
-<div class="decant-card">
-
-<img src="images/decant5ml.jpg">
-
-<h3>5ml</h3>
-
-<p style="margin-top:15px;color:#ccc;line-height:1.8;">
-Tamaño 7.6cm de alto x 1.4cm de grosor
-<br><br>
-(85-90 atomizaciones)
-</p>
-
-</div>
-
-<div class="decant-card">
-
-<img src="images/decant10ml.jpg">
-
-<h3>10ml</h3>
-
-<p style="margin-top:15px;color:#ccc;line-height:1.8;">
-Tamaño 12cm de alto x 1.4cm de grosor
-<br><br>
-(150-160 atomizaciones)
-</p>
-
-</div>
-
-</div>
-
-<div style="max-width:900px;margin:60px auto 0 auto;">
-
-<video controls
-style="
-width:100%;
-border-radius:20px;
-border:1px solid #222;
-">
-
-<source src="images/videodecant.mp4" type="video/mp4">
-
-</video>
-
-</div>
-
 </section>
 
 <section class="section" id="catalogo">
-
-<h2 class="section-title">
-Catálogo Premium
-</h2>
-
-<div class="products-grid" id="productsContainer">
-</div>
-
+<h2 class="section-title">Catálogo Premium</h2>
+<div class="products-grid" id="productsContainer"></div>
 </section>
 
-<section class="section" id="reviews">
-
-<h2 class="section-title">
-Reseñas de Clientes
-</h2>
-
-<div class="products-grid">
-
-<div class="product-card">
-<div class="review-image">
-<img src="images/testimonio1.jpg">
-</div>
-</div>
-
-<div class="product-card">
-<div class="review-image">
-<img src="images/testimonio2.jpg">
-</div>
-</div>
-
-<div class="product-card">
-<div class="review-image">
-<img src="images/testimonio3.jpg">
-</div>
-</div>
-
-</div>
-
-</section>
-
-<div class="cart-button" onclick="openCheckout()">
-🛒
-</div>
+<div class="cart-button" onclick="openCheckout()">🛒</div>
 
 <div class="modal" id="checkoutModal">
-
 <div class="modal-content">
 
-<h2>
-Finalizar Pedido
-</h2>
+<h2>Finalizar Pedido</h2>
 
-<button
-class="close-btn"
-onclick="closeCheckout()">
-Regresar
-</button>
+<button class="close-btn" onclick="closeCheckout()">Cerrar</button>
 
 <input id="nombre" placeholder="Nombres y Apellidos">
 
 <select id="fecha"></select>
 
-<select id="modalidad" onchange="toggleDelivery()">
-
-<option value="">
-Modalidad de venta
-</option>
-
-<option value="entrega">
-Entrega
-</option>
-
-<option value="retiro">
-Retiro
-</option>
-
+<select id="modalidad">
+<option value="">Modalidad</option>
+<option value="entrega">Entrega</option>
+<option value="retiro">Retiro</option>
 </select>
 
-<div id="deliveryFields" class="hidden">
-
-<select id="ciudad" onchange="toggleCiudad()">
-
-<option value="">
-Selecciona ciudad
-</option>
-
-<option value="quito">
-Quito
-</option>
-
-<option value="fuera">
-Fuera de Quito
-</option>
-
-</select>
-
-<div id="quitoFields" class="hidden">
-
-<input placeholder="Dirección">
-<input placeholder="Referencia">
-<input placeholder="Barrio">
+<button onclick="sendWhatsApp()">Enviar Pedido</button>
 
 </div>
-
-<div id="fueraFields" class="hidden">
-
-<p style="margin-bottom:15px;color:#ccc;">
-El envío se realiza mediante Servientrega.
-</p>
-
-<input placeholder="Nombres completos de quien recibe">
-<input placeholder="Cédula">
-<input placeholder="Dirección">
-<input placeholder="Referencia">
-<input placeholder="Celular">
-
 </div>
-
-</div>
-
-<button onclick="sendWhatsApp()">
-Enviar Pedido
-</button>
-
-</div>
-
-</div>
-
-<footer>
-
-<p>
-© 2026 Club de la Fragancia
-</p>
-
-</footer>
 
 <script>
 
-window.onload = function(){
+window.onload = function () {
 
 const fechaSelect = document.getElementById('fecha');
 
-for(let i = 0; i < 15; i++){
+for (let i = 0; i < 15; i++) {
 const fecha = new Date();
 fecha.setDate(fecha.getDate() + i);
 
@@ -622,12 +355,15 @@ option.text = fecha.toLocaleDateString();
 fechaSelect.appendChild(option);
 }
 
-}
+cargarProductos();
+};
 
 let cart = [];
 
-const sheetURL =
-'https://docs.google.com/spreadsheets/d/e/2PACX-1vR-f7qVxZ-oOGhGkSTs7l4hIaepmdzieynclQWVjK7FA-vTE37mLnIK8pZoaGZvCYkH7J6T1X_yxv-T/pub?output=csv';
+/* 🔥 TU NUEVO SHEET CSV AQUÍ */
+const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR-f7qVxZ-oOGhGkSTs7l4hIaepmdzieynclQWVjK7FA-vTE37mLnIK8pZoaGZvCYkH7J6T1X_yxv-T/pub?output=csv";
+
+function cargarProductos() {
 
 fetch(sheetURL)
 .then(res => res.text())
@@ -639,20 +375,17 @@ rows.forEach(row => {
 
 const cols = row.split(',');
 
-// ✅ ORDEN REAL DEL SHEET
 const nombre = cols[0]?.trim();
 const precio3 = cols[1]?.trim();
 const precio5 = cols[2]?.trim();
 const precio10 = cols[3]?.trim();
-const precio100 = cols[4]?.trim();
+const precioBotella = cols[4]?.trim();
 const notas = cols[5]?.trim();
 const ocasiones = cols[6]?.trim();
 
-if(!nombre) return;
+if (!nombre) return;
 
-// ID seguro para imágenes
-const id = nombre
-.toLowerCase()
+const id = nombre.toLowerCase()
 .normalize("NFD")
 .replace(/[\u0300-\u036f]/g, "")
 .replace(/[^a-z0-9]/gi,'');
@@ -660,159 +393,61 @@ const id = nombre
 document.getElementById('productsContainer').innerHTML += `
 <div class="product-card">
 
-  <div class="product-image">
-    <img id="${id}Image" src="images/${id}3ml.jpg">
-  </div>
+<div class="product-image">
+<img id="${id}Image" src="images/${id}3ml.jpg">
+</div>
 
-  <div class="product-info">
+<div class="product-info">
 
-    <h3>${nombre}</h3>
+<h3>${nombre}</h3>
 
-    <p><strong>Notas:</strong> ${notas}</p>
-    <p><strong>Ocasiones:</strong> ${ocasiones}</p>
+<p><strong>Notas:</strong> ${notas}</p>
+<p><strong>Ocasiones:</strong> ${ocasiones}</p>
 
-    <div class="size-options">
+<div class="size-options">
 
-      <button class="size-btn"
-        onclick="changeImage('${id}','3ml','${precio3}')">
-        3ml
-      </button>
+<button class="size-btn" onclick="changeImage('${id}','3ml','${precio3}')">3ml</button>
+<button class="size-btn" onclick="changeImage('${id}','5ml','${precio5}')">5ml</button>
+<button class="size-btn" onclick="changeImage('${id}','10ml','${precio10}')">10ml</button>
+<button class="size-btn" onclick="changeImage('${id}','botella','${precioBotella}')">Botella</button>
 
-      <button class="size-btn"
-        onclick="changeImage('${id}','5ml','${precio5}')">
-        5ml
-      </button>
+</div>
 
-      <button class="size-btn"
-        onclick="changeImage('${id}','10ml','${precio10}')">
-        10ml
-      </button>
+<div class="price" id="${id}Price">$${precio3}</div>
 
-      <button class="size-btn"
-        onclick="changeImage('${id}','100ml','${precio100}')">
-        Botella
-      </button>
+<button class="buy-btn" onclick="addToCart('${nombre}')">Agregar</button>
 
-    </div>
-
-    <div class="price" id="${id}Price">
-      $${precio3}
-    </div>
-
-    <button class="buy-btn"
-      onclick="addToCart('${nombre}')">
-      Agregar al carrito
-    </button>
-
-  </div>
+</div>
 </div>
 `;
 
 });
 
 });
-.catch(err => {
-console.error("Error cargando Sheet:", err);
-document.getElementById('productsContainer').innerHTML =
-"<p style='color:white;text-align:center'>Error cargando catálogo</p>";
-});
+}
 
 function changeImage(product,size,price){
-
-document.getElementById(product + 'Image').src =
-`images/${product}${size}.jpg`;
-
-document.getElementById(product + 'Price').innerText =
-'$' + price;
-
+document.getElementById(product+'Image').src=`images/${product}${size}.jpg`;
+document.getElementById(product+'Price').innerText='$'+price;
 }
 
-function addToCart(product){
-cart.push(product);
-alert(product + ' agregado al carrito');
-}
+function addToCart(product){cart.push(product);alert(product+' agregado');}
 
-function openCheckout(){
-document.getElementById('checkoutModal').style.display='flex';
-}
+function openCheckout(){document.getElementById('checkoutModal').style.display='flex';}
 
-function closeCheckout(){
-document.getElementById('checkoutModal').style.display='none';
-}
-
-function toggleDelivery(){
-const modalidad = document.getElementById('modalidad').value;
-
-if(modalidad === 'entrega'){
-document.getElementById('deliveryFields').classList.remove('hidden');
-}else{
-document.getElementById('deliveryFields').classList.add('hidden');
-}
-}
-
-function toggleCiudad(){
-
-const ciudad = document.getElementById('ciudad').value;
-
-document.getElementById('quitoFields').classList.add('hidden');
-document.getElementById('fueraFields').classList.add('hidden');
-
-if(ciudad === 'quito'){
-document.getElementById('quitoFields').classList.remove('hidden');
-}
-
-if(ciudad === 'fuera'){
-document.getElementById('fueraFields').classList.remove('hidden');
-}
-
-}
+function closeCheckout(){document.getElementById('checkoutModal').style.display='none';}
 
 function sendWhatsApp(){
 
-const nombre = document.getElementById('nombre').value.trim();
+const nombre=document.getElementById('nombre').value;
+const fecha=document.getElementById('fecha').value;
 
-if(nombre === ''){
-alert('Por favor ingresa nombres y apellidos');
-return;
-}
+let productos='';
+cart.forEach(p=>productos+='- '+p+'%0A');
 
-const modalidad = document.getElementById('modalidad').value;
+const msg=`Pedido:%0A${nombre}%0A${fecha}%0A${productos}`;
 
-if(modalidad === ''){
-alert('Selecciona una modalidad de venta');
-return;
-}
-
-const fecha = document.getElementById('fecha').value;
-
-let productos = '';
-
-if(cart.length === 0){
-alert('Agrega productos al carrito');
-return;
-}
-
-cart.forEach(p=>{
-productos += '- ' + p + '%0A';
-});
-
-const mensaje = `🛍️ Pedido Club de la Fragancia
-
-👤 Cliente: ${nombre}
-
-📅 Fecha:
-${fecha}
-
-🚚 Modalidad:
-${modalidad}
-
-🧴 Productos:
-${productos}`;
-
-window.open(
-`https://wa.me/593999999999?text=${encodeURIComponent(mensaje)}`,
-'_blank'
-);
+window.open(`https://wa.me/593999999999?text=${msg}`,'_blank');
 
 }
 
