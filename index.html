@@ -21,100 +21,145 @@ body{
 font-family:'Poppins',sans-serif;
 background:#050505;
 color:white;
+overflow-x:hidden;
 }
 
 header{
-background:#000;
-padding:20px;
-text-align:center;
+position:fixed;
+top:0;
+width:100%;
+background:rgba(0,0,0,.85);
+backdrop-filter:blur(10px);
+padding:20px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+z-index:1000;
 border-bottom:1px solid #222;
 }
 
 .logo{
-font-size:32px;
+font-size:28px;
 font-weight:700;
 color:#d4af37;
 letter-spacing:2px;
 }
 
+nav{
+display:flex;
+gap:20px;
+}
+
+nav a{
+text-decoration:none;
+color:white;
+font-size:15px;
+transition:.3s;
+}
+
+nav a:hover{
+color:#d4af37;
+}
+
 .hero{
-padding:80px 20px;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
 text-align:center;
-background:#0b0b0f;
+padding:20px;
+background:
+linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.8)),
+url('images/banner.jpg');
+background-size:cover;
+background-position:center;
 }
 
 .hero h1{
-font-size:50px;
+font-size:70px;
 margin-bottom:20px;
 }
 
 .hero p{
+font-size:20px;
 max-width:700px;
 margin:auto;
 line-height:1.8;
-color:#ccc;
-font-size:18px;
+color:#ddd;
 }
 
-.decant-section{
-padding:70px 20px;
-text-align:center;
+.hero button{
+margin-top:35px;
+padding:15px 35px;
+border:none;
+background:#d4af37;
+color:black;
+font-weight:700;
+border-radius:12px;
+cursor:pointer;
+font-size:16px;
+}
+
+.section{
+padding:100px 20px;
 }
 
 .section-title{
-font-size:40px;
-margin-bottom:20px;
+text-align:center;
+font-size:45px;
+margin-bottom:25px;
 color:#d4af37;
 }
 
-.decant-text{
-max-width:800px;
+.section-text{
+max-width:850px;
 margin:auto;
+text-align:center;
 line-height:1.9;
 color:#ccc;
-font-size:17px;
+font-size:18px;
 }
 
 .decant-grid{
 display:flex;
 justify-content:center;
-gap:25px;
+gap:30px;
 flex-wrap:wrap;
-margin-top:40px;
+margin-top:50px;
 }
 
 .decant-card{
 background:#111;
 padding:20px;
 border-radius:20px;
-width:220px;
+width:240px;
+border:1px solid #222;
 }
 
 .decant-card img{
 width:100%;
 border-radius:15px;
+background:white;
+padding:15px;
 }
 
 .decant-card h3{
 margin-top:15px;
-font-size:22px;
-}
-
-.products{
-padding:80px 20px;
+font-size:24px;
 }
 
 .products-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:30px;
-max-width:1300px;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:35px;
+max-width:1400px;
 margin:auto;
+margin-top:60px;
 }
 
 .product-card{
-background:#111;
-border-radius:20px;
+background:#101014;
+border-radius:25px;
 overflow:hidden;
 border:1px solid #222;
 transition:.3s;
@@ -125,9 +170,9 @@ transform:translateY(-5px);
 }
 
 .product-image{
-background:#d9d9d9;
-padding:20px;
-height:350px;
+background:white;
+padding:25px;
+height:360px;
 display:flex;
 justify-content:center;
 align-items:center;
@@ -149,7 +194,7 @@ margin-bottom:15px;
 }
 
 .product-info p{
-color:#ccc;
+color:#bbb;
 line-height:1.8;
 margin-bottom:20px;
 }
@@ -164,12 +209,12 @@ margin-bottom:20px;
 .size-btn{
 flex:1;
 padding:12px;
-background:#1a1a1f;
-border:1px solid #333;
-color:white;
+border:none;
 border-radius:10px;
-cursor:pointer;
+background:#1d1d24;
+color:white;
 font-weight:600;
+cursor:pointer;
 transition:.3s;
 }
 
@@ -179,7 +224,7 @@ color:black;
 }
 
 .price{
-font-size:28px;
+font-size:30px;
 font-weight:700;
 color:#d4af37;
 margin-bottom:20px;
@@ -187,11 +232,76 @@ margin-bottom:20px;
 
 .buy-btn{
 width:100%;
+padding:16px;
+border:none;
+background:#d4af37;
+color:black;
+font-size:16px;
+font-weight:700;
+border-radius:12px;
+cursor:pointer;
+}
+
+.cart-button{
+position:fixed;
+bottom:25px;
+right:25px;
+background:#d4af37;
+color:black;
+padding:18px;
+border-radius:50%;
+font-size:22px;
+cursor:pointer;
+z-index:1000;
+font-weight:bold;
+}
+
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.85);
+z-index:2000;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.modal-content{
+background:#111;
+padding:30px;
+border-radius:20px;
+width:100%;
+max-width:500px;
+max-height:90vh;
+overflow:auto;
+}
+
+.modal-content h2{
+margin-bottom:25px;
+}
+
+.modal-content input,
+.modal-content select,
+.modal-content textarea{
+width:100%;
+padding:14px;
+margin-bottom:15px;
+background:#1b1b22;
+border:none;
+border-radius:10px;
+color:white;
+}
+
+.modal-content button{
+width:100%;
 padding:15px;
 background:#d4af37;
 border:none;
 border-radius:12px;
-font-size:16px;
 font-weight:700;
 cursor:pointer;
 }
@@ -200,14 +310,23 @@ footer{
 padding:40px 20px;
 text-align:center;
 background:#000;
-margin-top:80px;
 border-top:1px solid #222;
+}
+
+.hidden{
+display:none;
 }
 
 @media(max-width:768px){
 
 .hero h1{
-font-size:38px;
+font-size:42px;
+}
+
+header{
+padding:20px;
+flex-direction:column;
+gap:15px;
 }
 
 }
@@ -219,33 +338,49 @@ font-size:38px;
 <body>
 
 <header>
+
 <div class="logo">
 CLUB DE LA FRAGANCIA
 </div>
+
+<nav>
+<a href="#inicio">Inicio</a>
+<a href="#decants">Decants</a>
+<a href="#catalogo">Catálogo</a>
+</nav>
+
 </header>
 
-<section class="hero">
+<section class="hero" id="inicio">
 
-<h1>Perfumes Premium en Decants</h1>
+<div>
+
+<h1>Club de la Fragancia</h1>
 
 <p>
 Descubre fragancias originales en presentaciones de
 3ml, 5ml, 10ml o botella completa.
 </p>
 
+<button onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">
+Explorar Catálogo
+</button>
+
+</div>
+
 </section>
 
-<section class="decant-section">
+<section class="section" id="decants">
 
 <h2 class="section-title">
 ¿Qué es un Decant?
 </h2>
 
-<p class="decant-text">
+<p class="section-text">
 Un decant es una pequeña cantidad de perfume original
 extraída directamente de la botella auténtica.
-Te permite probar fragancias exclusivas de forma
-más accesible y práctica.
+Te permite probar fragancias exclusivas de forma más
+accesible y práctica.
 </p>
 
 <div class="decant-grid">
@@ -269,9 +404,9 @@ más accesible y práctica.
 
 </section>
 
-<section class="products">
+<section class="section" id="catalogo">
 
-<h2 class="section-title" style="text-align:center;">
+<h2 class="section-title">
 Catálogo Premium
 </h2>
 
@@ -290,29 +425,28 @@ Catálogo Premium
 <h3>Moschino Toy Boy</h3>
 
 <p>
-Fragancia intensa, moderna y elegante con notas
-especiadas y dulces.
+Fragancia moderna y elegante con notas especiadas.
 </p>
 
 <div class="size-options">
 
 <button class="size-btn"
-onclick="changeImage('moschino','3ml')">
+onclick="changeImage('moschino','3ml',4)">
 3ml
 </button>
 
 <button class="size-btn"
-onclick="changeImage('moschino','5ml')">
+onclick="changeImage('moschino','5ml',7)">
 5ml
 </button>
 
 <button class="size-btn"
-onclick="changeImage('moschino','10ml')">
+onclick="changeImage('moschino','10ml',12)">
 10ml
 </button>
 
 <button class="size-btn"
-onclick="changeImage('moschino','100ml')">
+onclick="changeImage('moschino','100ml',95)">
 Botella
 </button>
 
@@ -323,8 +457,8 @@ $4
 </div>
 
 <button class="buy-btn"
-onclick="buyProduct('Moschino Toy Boy')">
-Comprar por WhatsApp
+onclick="addToCart('Moschino Toy Boy')">
+Agregar al carrito
 </button>
 
 </div>
@@ -344,28 +478,27 @@ Comprar por WhatsApp
 
 <p>
 Aroma sofisticado con notas cítricas y amaderadas.
-Perfecto para ocasiones especiales.
 </p>
 
 <div class="size-options">
 
 <button class="size-btn"
-onclick="changeImage('clubdenuit','3ml')">
+onclick="changeImage('clubdenuit','3ml',5)">
 3ml
 </button>
 
 <button class="size-btn"
-onclick="changeImage('clubdenuit','5ml')">
+onclick="changeImage('clubdenuit','5ml',8)">
 5ml
 </button>
 
 <button class="size-btn"
-onclick="changeImage('clubdenuit','10ml')">
+onclick="changeImage('clubdenuit','10ml',14)">
 10ml
 </button>
 
 <button class="size-btn"
-onclick="changeImage('clubdenuit','100ml')">
+onclick="changeImage('clubdenuit','100ml',110)">
 Botella
 </button>
 
@@ -376,8 +509,8 @@ $5
 </div>
 
 <button class="buy-btn"
-onclick="buyProduct('Club de Nuit Intense Man')">
-Comprar por WhatsApp
+onclick="addToCart('Club de Nuit Intense Man')">
+Agregar al carrito
 </button>
 
 </div>
@@ -386,6 +519,72 @@ Comprar por WhatsApp
 </div>
 
 </section>
+
+<div class="cart-button" onclick="openCheckout()">
+🛒
+</div>
+
+<!-- MODAL -->
+
+<div class="modal" id="checkoutModal">
+
+<div class="modal-content">
+
+<h2>Finalizar Pedido</h2>
+
+<input id="nombre" placeholder="Nombres y Apellidos">
+
+<input type="date" id="fecha">
+
+<select id="modalidad" onchange="toggleDelivery()">
+<option value="">Modalidad de venta</option>
+<option value="entrega">Entrega</option>
+<option value="retiro">Retiro</option>
+</select>
+
+<div id="deliveryFields" class="hidden">
+
+<select id="ciudad" onchange="toggleCiudad()">
+
+<option value="">Selecciona ciudad</option>
+
+<option value="quito">Quito</option>
+
+<option value="fuera">Fuera de Quito</option>
+
+</select>
+
+<div id="quitoFields" class="hidden">
+
+<input placeholder="Dirección">
+<input placeholder="Referencia">
+<input placeholder="Barrio">
+
+</div>
+
+<div id="fueraFields" class="hidden">
+
+<p style="margin-bottom:15px;color:#ccc;">
+El envío se realiza mediante Servientrega.
+</p>
+
+<input placeholder="Nombres completos de quien recibe">
+<input placeholder="Cédula">
+<input placeholder="Dirección">
+<input placeholder="Referencia">
+<input placeholder="Celular">
+
+</div>
+
+</div>
+
+<button onclick="sendWhatsApp()">
+Enviar Pedido
+</button>
+
+</div>
+
+</div>
 
 <footer>
 
@@ -397,43 +596,96 @@ Comprar por WhatsApp
 
 <script>
 
-const prices = {
+let cart = [];
 
-moschino:{
-'3ml':4,
-'5ml':7,
-'10ml':12,
-'100ml':95
-},
-
-clubdenuit:{
-'3ml':5,
-'5ml':8,
-'10ml':14,
-'100ml':110
-}
-
-};
-
-function changeImage(product,size){
+function changeImage(product,size,price){
 
 document.getElementById(product + 'Image').src =
 `images/${product}${size}.jpg`;
 
 document.getElementById(product + 'Price').innerText =
-'$' + prices[product][size];
+'$' + price;
 
 }
 
-function buyProduct(product){
+function addToCart(product){
 
-const message =
-`Hola, quiero comprar el perfume ${product}.`;
+cart.push(product);
 
-const url =
-`https://wa.me/593999999999?text=${encodeURIComponent(message)}`;
+alert(product + ' agregado al carrito');
 
-window.open(url,'_blank');
+}
+
+function openCheckout(){
+
+document.getElementById('checkoutModal').style.display='flex';
+
+}
+
+function toggleDelivery(){
+
+const modalidad =
+document.getElementById('modalidad').value;
+
+if(modalidad === 'entrega'){
+
+document.getElementById('deliveryFields')
+.classList.remove('hidden');
+
+}else{
+
+document.getElementById('deliveryFields')
+.classList.add('hidden');
+
+}
+
+}
+
+function toggleCiudad(){
+
+const ciudad =
+document.getElementById('ciudad').value;
+
+document.getElementById('quitoFields')
+.classList.add('hidden');
+
+document.getElementById('fueraFields')
+.classList.add('hidden');
+
+if(ciudad === 'quito'){
+
+document.getElementById('quitoFields')
+.classList.remove('hidden');
+
+}
+
+if(ciudad === 'fuera'){
+
+document.getElementById('fueraFields')
+.classList.remove('hidden');
+
+}
+
+}
+
+function sendWhatsApp(){
+
+const nombre =
+document.getElementById('nombre').value;
+
+let productos = '';
+
+cart.forEach(p=>{
+productos += '- ' + p + '%0A';
+});
+
+const mensaje =
+`🛍️ Pedido Club de la Fragancia%0A%0ACliente: ${nombre}%0A%0AProductos:%0A${productos}`;
+
+window.open(
+`https://wa.me/0995199354?text=${mensaje}`,
+'_blank'
+);
 
 }
 
@@ -441,3 +693,5 @@ window.open(url,'_blank');
 
 </body>
 </html>
+
+
