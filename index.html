@@ -705,15 +705,18 @@ fetch(sheetURL)
 .then(res => res.text())
 .then(data => {
 
-const rows =
-data.trim().split('\n').slice(1);
+console.log("RAW CSV:", data);
 
-rows.forEach(row => {
+const rows = data
+.trim()
+.split('\n')
+.filter(r => r.trim() !== '');
+
+rows.slice(1).forEach(row => {
 
 const cols = row.split(',');
 
 const nombre = cols[0]?.trim();
-
 const precio3 = cols[1]?.trim();
 const precio5 = cols[2]?.trim();
 const precio10 = cols[3]?.trim();
@@ -730,14 +733,10 @@ nombre
 
 document.getElementById('productsContainer')
 .innerHTML += `
-
 <div class="product-card">
 
 <div class="product-image">
-
-<img id="${id}Image"
-src="images/${id}3ml.jpg">
-
+<img id="${id}Image" src="images/${id}3ml.jpg">
 </div>
 
 <div class="product-info">
@@ -745,48 +744,27 @@ src="images/${id}3ml.jpg">
 <h3>${nombre}</h3>
 
 <div class="size-options">
-
-<button class="size-btn"
-onclick="changeImage('${id}','3ml','${precio3}')">
-3ml
-</button>
-
-<button class="size-btn"
-onclick="changeImage('${id}','5ml','${precio5}')">
-5ml
-</button>
-
-<button class="size-btn"
-onclick="changeImage('${id}','10ml','${precio10}')">
-10ml
-</button>
-
-<button class="size-btn"
-onclick="changeImage('${id}','100ml','${precio100}')">
-Botella
-</button>
-
+<button class="size-btn" onclick="changeImage('${id}','3ml','${precio3}')">3ml</button>
+<button class="size-btn" onclick="changeImage('${id}','5ml','${precio5}')">5ml</button>
+<button class="size-btn" onclick="changeImage('${id}','10ml','${precio10}')">10ml</button>
+<button class="size-btn" onclick="changeImage('${id}','100ml','${precio100}')">Botella</button>
 </div>
 
-<div class="price" id="${id}Price">
-$${precio3}
-</div>
+<div class="price" id="${id}Price">$${precio3}</div>
 
-<button class="buy-btn"
-onclick="addToCart('${nombre}')">
-
+<button class="buy-btn" onclick="addToCart('${nombre}')">
 Agregar al carrito
-
 </button>
 
 </div>
 
 </div>
-
 `;
-
 });
 
+})
+.catch(err => {
+console.log("ERROR FETCH:", err);
 });
 
 function changeImage(product,size,price){
