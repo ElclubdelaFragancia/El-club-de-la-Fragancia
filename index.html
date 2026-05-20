@@ -639,83 +639,78 @@ rows.forEach(row => {
 
 const cols = row.split(',');
 
-// 📌 NUEVO ORDEN CORRECTO SEGÚN TU SHEET:
-const id = cols[0]?.trim();
-const nombre = cols[1]?.trim();
-const descripcion = cols[2]?.trim();
-const notas = cols[3]?.trim();
-const ocasiones = cols[4]?.trim();
-const precio3 = cols[5]?.trim();
-const precio5 = cols[6]?.trim();
-const precio10 = cols[7]?.trim();
-const precio100 = cols[8]?.trim();
+// ✅ ORDEN REAL DEL SHEET
+const nombre = cols[0]?.trim();
+const precio3 = cols[1]?.trim();
+const precio5 = cols[2]?.trim();
+const precio10 = cols[3]?.trim();
+const precio100 = cols[4]?.trim();
+const notas = cols[5]?.trim();
+const ocasiones = cols[6]?.trim();
 
-if(!id || !nombre) return;
+if(!nombre) return;
 
-const precio3n = Number(precio3) || 0;
-const precio5n = Number(precio5) || 0;
-const precio10n = Number(precio10) || 0;
-const precio100n = Number(precio100) || 0;
+// ID seguro para imágenes
+const id = nombre
+.toLowerCase()
+.normalize("NFD")
+.replace(/[\u0300-\u036f]/g, "")
+.replace(/[^a-z0-9]/gi,'');
 
 document.getElementById('productsContainer').innerHTML += `
-
 <div class="product-card">
 
-<div class="product-image">
-<img id="${id}Image" src="images/${id}3ml.jpg">
+  <div class="product-image">
+    <img id="${id}Image" src="images/${id}3ml.jpg">
+  </div>
+
+  <div class="product-info">
+
+    <h3>${nombre}</h3>
+
+    <p><strong>Notas:</strong> ${notas}</p>
+    <p><strong>Ocasiones:</strong> ${ocasiones}</p>
+
+    <div class="size-options">
+
+      <button class="size-btn"
+        onclick="changeImage('${id}','3ml','${precio3}')">
+        3ml
+      </button>
+
+      <button class="size-btn"
+        onclick="changeImage('${id}','5ml','${precio5}')">
+        5ml
+      </button>
+
+      <button class="size-btn"
+        onclick="changeImage('${id}','10ml','${precio10}')">
+        10ml
+      </button>
+
+      <button class="size-btn"
+        onclick="changeImage('${id}','100ml','${precio100}')">
+        Botella
+      </button>
+
+    </div>
+
+    <div class="price" id="${id}Price">
+      $${precio3}
+    </div>
+
+    <button class="buy-btn"
+      onclick="addToCart('${nombre}')">
+      Agregar al carrito
+    </button>
+
+  </div>
 </div>
-
-<div class="product-info">
-
-<h3>${nombre}</h3>
-
-<p>${descripcion || ''}</p>
-
-<p><strong>Notas:</strong><br>${notas || ''}</p>
-
-<p><strong>Ocasiones:</strong><br>${ocasiones || ''}</p>
-
-<div class="size-options">
-
-<button class="size-btn"
-onclick="changeImage('${id}','3ml',${precio3n})">
-3ml
-</button>
-
-<button class="size-btn"
-onclick="changeImage('${id}','5ml',${precio5n})">
-5ml
-</button>
-
-<button class="size-btn"
-onclick="changeImage('${id}','10ml',${precio10n})">
-10ml
-</button>
-
-<button class="size-btn"
-onclick="changeImage('${id}','100ml',${precio100n})">
-Botella
-</button>
-
-</div>
-
-<div class="price" id="${id}Price">
-$${precio3n}
-</div>
-
-<button class="buy-btn"
-onclick="addToCart('${nombre}')">
-Agregar al carrito
-</button>
-
-</div>
-</div>
-
 `;
 
 });
 
-})
+});
 .catch(err => {
 console.error("Error cargando Sheet:", err);
 document.getElementById('productsContainer').innerHTML =
