@@ -11,13 +11,77 @@
 <style>
 
 body{
-background:black;
+background:#050505;
 color:white;
 font-family:Arial;
+margin:0;
+}
+
+header{
+background:black;
+padding:20px;
+text-align:center;
+font-size:32px;
+font-weight:bold;
+color:gold;
+}
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:30px;
 padding:40px;
 }
 
-h1{
+.card{
+background:#111;
+border-radius:20px;
+overflow:hidden;
+border:1px solid #222;
+}
+
+.image{
+background:white;
+padding:20px;
+height:320px;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.image img{
+max-width:100%;
+max-height:260px;
+object-fit:contain;
+}
+
+.info{
+padding:20px;
+}
+
+.info h2{
+margin-bottom:20px;
+}
+
+.sizes{
+display:flex;
+gap:10px;
+margin-bottom:20px;
+}
+
+.sizes button{
+flex:1;
+padding:10px;
+border:none;
+border-radius:10px;
+background:#222;
+color:white;
+cursor:pointer;
+}
+
+.price{
+font-size:28px;
+font-weight:bold;
 color:gold;
 }
 
@@ -27,20 +91,144 @@ color:gold;
 
 <body>
 
-<h1>
+<header>
 CLUB DE LA FRAGANCIA
-</h1>
+</header>
 
-<p>
-Si ves esto, la página funciona.
-</p>
+<div class="products">
 
-</body>
+<!-- PRODUCTO 1 -->
 
-</html>
+<div class="card">
 
+<div class="image">
+
+<img
+src="images/versaceeros3ml.jpg"
+id="versaceImage"
+>
+
+</div>
+
+<div class="info">
+
+<h2>
+Versace Eros
+</h2>
+
+<div class="sizes">
+
+<button onclick="changeImage('versace','3ml','4.75')">
+3ml
+</button>
+
+<button onclick="changeImage('versace','5ml','7.50')">
+5ml
+</button>
+
+<button onclick="changeImage('versace','10ml','14.50')">
+10ml
+</button>
+
+<button onclick="changeImage('versace','100ml','130')">
+Botella
+</button>
+
+</div>
+
+<div
+class="price"
+id="versacePrice">
+
+$4.75
+
+</div>
+
+</div>
+
+</div>
+
+<!-- PRODUCTO 2 -->
+
+<div class="card">
+
+<div class="image">
+
+<img
+src="images/toyboymoschino3ml.jpg"
+id="toyboyImage"
+>
+
+</div>
+
+<div class="info">
+
+<h2>
+Toy Boy Moschino
+</h2>
+
+<div class="sizes">
+
+<button onclick="changeImage('toyboy','3ml','4.25')">
+3ml
+</button>
+
+<button onclick="changeImage('toyboy','5ml','7.75')">
+5ml
+</button>
+
+<button onclick="changeImage('toyboy','10ml','13')">
+10ml
+</button>
+
+<button onclick="changeImage('toyboy','100ml','150')">
+Botella
+</button>
+
+</div>
+
+<div
+class="price"
+id="toyboyPrice">
+
+$4.25
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function changeImage(product,size,price){
+
+if(product === 'versace'){
+
+document.getElementById('versaceImage').src =
+`images/versaceeros${size}.jpg`;
+
+document.getElementById('versacePrice').innerText =
+'$' + price;
+
+}
+
+if(product === 'toyboy'){
+
+document.getElementById('toyboyImage').src =
+`images/toyboymoschino${size}.jpg`;
+
+document.getElementById('toyboyPrice').innerText =
+'$' + price;
+
+}
+
+}
 
 </script>
 
 </body>
+
 </html>
