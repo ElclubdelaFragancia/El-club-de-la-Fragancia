@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>El CLUB DE LA FRAGANCIA </title>
+<title>Club de la Fragancia</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -284,6 +284,7 @@ max-width:550px;
 max-height:90vh;
 overflow:auto;
 border:1px solid #222;
+position:relative;
 }
 
 .modal-content h2{
@@ -291,8 +292,7 @@ margin-bottom:25px;
 }
 
 .modal-content input,
-.modal-content select,
-.modal-content textarea{
+.modal-content select{
 width:100%;
 padding:14px;
 margin-bottom:15px;
@@ -310,6 +310,12 @@ border:none;
 border-radius:12px;
 font-weight:700;
 cursor:pointer;
+margin-top:10px;
+}
+
+.close-btn{
+background:#222 !important;
+color:white !important;
 }
 
 .review-image{
@@ -408,13 +414,9 @@ y práctica.
 <h3>3ml</h3>
 
 <p style="margin-top:15px;color:#ccc;line-height:1.8;">
-
 Tamaño 6cm de alto x 1.4cm de grosor
-
 <br><br>
-
 (50-55 atomizaciones)
-
 </p>
 
 </div>
@@ -426,13 +428,9 @@ Tamaño 6cm de alto x 1.4cm de grosor
 <h3>5ml</h3>
 
 <p style="margin-top:15px;color:#ccc;line-height:1.8;">
-
 Tamaño 7.6cm de alto x 1.4cm de grosor
-
 <br><br>
-
 (85-90 atomizaciones)
-
 </p>
 
 </div>
@@ -444,13 +442,9 @@ Tamaño 7.6cm de alto x 1.4cm de grosor
 <h3>10ml</h3>
 
 <p style="margin-top:15px;color:#ccc;line-height:1.8;">
-
 Tamaño 12cm de alto x 1.4cm de grosor
-
 <br><br>
-
 (150-160 atomizaciones)
-
 </p>
 
 </div>
@@ -491,34 +485,24 @@ Catálogo Premium
 Reseñas de Clientes
 </h2>
 
-<p class="section-text">
-Clientes reales compartiendo sus experiencias.
-</p>
-
 <div class="products-grid">
 
 <div class="product-card">
-
 <div class="review-image">
 <img src="images/testimonio1.jpg">
 </div>
-
 </div>
 
 <div class="product-card">
-
 <div class="review-image">
 <img src="images/testimonio2.jpg">
 </div>
-
 </div>
 
 <div class="product-card">
-
 <div class="review-image">
 <img src="images/testimonio3.jpg">
 </div>
-
 </div>
 
 </div>
@@ -536,6 +520,12 @@ Clientes reales compartiendo sus experiencias.
 <h2>
 Finalizar Pedido
 </h2>
+
+<button
+class="close-btn"
+onclick="closeCheckout()">
+Regresar
+</button>
 
 <input id="nombre" placeholder="Nombres y Apellidos">
 
@@ -653,22 +643,24 @@ fetch(sheetURL)
 .then(data => {
 
 const rows =
-data.split('\n').slice(1);
+data.trim().split('\n').slice(1);
 
 rows.forEach(row => {
 
 const cols = row.split(',');
 
-const id = cols[0];
-const nombre = cols[1];
-const descripcion = cols[2];
-const notas = cols[3];
-const ocasiones = cols[4];
+const id = cols[0]?.trim();
+const nombre = cols[1]?.trim();
+const descripcion = cols[2]?.trim();
+const notas = cols[3]?.trim();
+const ocasiones = cols[4]?.trim();
 
-const precio3 = cols[5];
-const precio5 = cols[6];
-const precio10 = cols[7];
-const precio100 = cols[8];
+const precio3 = cols[5]?.trim();
+const precio5 = cols[6]?.trim();
+const precio10 = cols[7]?.trim();
+const precio100 = cols[8]?.trim();
+
+if(!id || !nombre) return;
 
 document.getElementById('productsContainer')
 .innerHTML += `
@@ -763,7 +755,15 @@ alert(product + ' agregado al carrito');
 
 function openCheckout(){
 
-document.getElementById('checkoutModal').style.display='flex';
+document.getElementById('checkoutModal')
+.style.display='flex';
+
+}
+
+function closeCheckout(){
+
+document.getElementById('checkoutModal')
+.style.display='none';
 
 }
 
@@ -816,7 +816,15 @@ document.getElementById('fueraFields')
 function sendWhatsApp(){
 
 const nombre =
-document.getElementById('nombre').value;
+document.getElementById('nombre').value.trim();
+
+if(nombre === ''){
+
+alert('Por favor ingresa nombres y apellidos');
+
+return;
+
+}
 
 const fecha =
 document.getElementById('fecha').value;
