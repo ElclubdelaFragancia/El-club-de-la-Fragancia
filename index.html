@@ -1,38 +1,418 @@
 <!DOCTYPE html>
-Comprar por WhatsApp
-</button>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Club de la Fragancia</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#050505;
+color:white;
+}
+
+header{
+background:#000;
+padding:20px;
+text-align:center;
+border-bottom:1px solid #222;
+}
+
+.logo{
+font-size:32px;
+font-weight:700;
+color:#d4af37;
+letter-spacing:2px;
+}
+
+.hero{
+padding:80px 20px;
+text-align:center;
+background:#0b0b0f;
+}
+
+.hero h1{
+font-size:50px;
+margin-bottom:20px;
+}
+
+.hero p{
+max-width:700px;
+margin:auto;
+line-height:1.8;
+color:#ccc;
+font-size:18px;
+}
+
+.decant-section{
+padding:70px 20px;
+text-align:center;
+}
+
+.section-title{
+font-size:40px;
+margin-bottom:20px;
+color:#d4af37;
+}
+
+.decant-text{
+max-width:800px;
+margin:auto;
+line-height:1.9;
+color:#ccc;
+font-size:17px;
+}
+
+.decant-grid{
+display:flex;
+justify-content:center;
+gap:25px;
+flex-wrap:wrap;
+margin-top:40px;
+}
+
+.decant-card{
+background:#111;
+padding:20px;
+border-radius:20px;
+width:220px;
+}
+
+.decant-card img{
+width:100%;
+border-radius:15px;
+}
+
+.decant-card h3{
+margin-top:15px;
+font-size:22px;
+}
+
+.products{
+padding:80px 20px;
+}
+
+.products-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:30px;
+max-width:1300px;
+margin:auto;
+}
+
+.product-card{
+background:#111;
+border-radius:20px;
+overflow:hidden;
+border:1px solid #222;
+transition:.3s;
+}
+
+.product-card:hover{
+transform:translateY(-5px);
+}
+
+.product-image{
+background:#d9d9d9;
+padding:20px;
+height:350px;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.product-image img{
+max-width:100%;
+max-height:300px;
+object-fit:contain;
+}
+
+.product-info{
+padding:25px;
+}
+
+.product-info h3{
+font-size:28px;
+margin-bottom:15px;
+}
+
+.product-info p{
+color:#ccc;
+line-height:1.8;
+margin-bottom:20px;
+}
+
+.size-options{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:20px;
+}
+
+.size-btn{
+flex:1;
+padding:12px;
+background:#1a1a1f;
+border:1px solid #333;
+color:white;
+border-radius:10px;
+cursor:pointer;
+font-weight:600;
+transition:.3s;
+}
+
+.size-btn:hover{
+background:#d4af37;
+color:black;
+}
+
+.price{
+font-size:28px;
+font-weight:700;
+color:#d4af37;
+margin-bottom:20px;
+}
+
+.buy-btn{
+width:100%;
+padding:15px;
+background:#d4af37;
+border:none;
+border-radius:12px;
+font-size:16px;
+font-weight:700;
+cursor:pointer;
+}
+
+footer{
+padding:40px 20px;
+text-align:center;
+background:#000;
+margin-top:80px;
+border-top:1px solid #222;
+}
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:38px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+<div class="logo">
+CLUB DE LA FRAGANCIA
 </div>
+</header>
+
+<section class="hero">
+
+<h1>Perfumes Premium en Decants</h1>
+
+<p>
+Descubre fragancias originales en presentaciones de
+3ml, 5ml, 10ml o botella completa.
+</p>
+
+</section>
+
+<section class="decant-section">
+
+<h2 class="section-title">
+¿Qué es un Decant?
+</h2>
+
+<p class="decant-text">
+Un decant es una pequeña cantidad de perfume original
+extraída directamente de la botella auténtica.
+Te permite probar fragancias exclusivas de forma
+más accesible y práctica.
+</p>
+
+<div class="decant-grid">
+
+<div class="decant-card">
+<img src="images/33_edited.jpg">
+<h3>3ml</h3>
 </div>
 
-<script>
-<div class="sizes">
+<div class="decant-card">
+<img src="images/34_edited.jpg">
+<h3>5ml</h3>
+</div>
 
-<button onclick="changeImage('clubdenuit','3ml')">
+<div class="decant-card">
+<img src="images/35_edited.jpg">
+<h3>10ml</h3>
+</div>
+
+</div>
+
+</section>
+
+<section class="products">
+
+<h2 class="section-title" style="text-align:center;">
+Catálogo Premium
+</h2>
+
+<div class="products-grid">
+
+<!-- MOSCHINO -->
+
+<div class="product-card">
+
+<div class="product-image">
+<img id="moschinoImage" src="images/moschino3ml.jpg">
+</div>
+
+<div class="product-info">
+
+<h3>Moschino Toy Boy</h3>
+
+<p>
+Fragancia intensa, moderna y elegante con notas
+especiadas y dulces.
+</p>
+
+<div class="size-options">
+
+<button class="size-btn"
+onclick="changeImage('moschino','3ml')">
 3ml
 </button>
 
-<button onclick="changeImage('clubdenuit','5ml')">
+<button class="size-btn"
+onclick="changeImage('moschino','5ml')">
 5ml
 </button>
 
-<button onclick="changeImage('clubdenuit','10ml')">
+<button class="size-btn"
+onclick="changeImage('moschino','10ml')">
 10ml
 </button>
 
-<button onclick="changeImage('clubdenuit','100ml')">
+<button class="size-btn"
+onclick="changeImage('moschino','100ml')">
 Botella
 </button>
 
 </div>
 
+<div class="price" id="moschinoPrice">
+$4
 </div>
+
+<button class="buy-btn"
+onclick="buyProduct('Moschino Toy Boy')">
+Comprar por WhatsApp
+</button>
+
+</div>
+</div>
+
+<!-- CLUB DE NUIT -->
+
+<div class="product-card">
+
+<div class="product-image">
+<img id="clubdenuitImage" src="images/clubdenuit3ml.jpg">
+</div>
+
+<div class="product-info">
+
+<h3>Club de Nuit Intense Man</h3>
+
+<p>
+Aroma sofisticado con notas cítricas y amaderadas.
+Perfecto para ocasiones especiales.
+</p>
+
+<div class="size-options">
+
+<button class="size-btn"
+onclick="changeImage('clubdenuit','3ml')">
+3ml
+</button>
+
+<button class="size-btn"
+onclick="changeImage('clubdenuit','5ml')">
+5ml
+</button>
+
+<button class="size-btn"
+onclick="changeImage('clubdenuit','10ml')">
+10ml
+</button>
+
+<button class="size-btn"
+onclick="changeImage('clubdenuit','100ml')">
+Botella
+</button>
+
+</div>
+
+<div class="price" id="clubdenuitPrice">
+$5
+</div>
+
+<button class="buy-btn"
+onclick="buyProduct('Club de Nuit Intense Man')">
+Comprar por WhatsApp
+</button>
+
+</div>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>
+© 2026 Club de la Fragancia
+</p>
+
+</footer>
+
+<script>
+
 const prices = {
+
 moschino:{
 '3ml':4,
 '5ml':7,
 '10ml':12,
 '100ml':95
+},
+
+clubdenuit:{
+'3ml':5,
+'5ml':8,
+'10ml':14,
+'100ml':110
 }
+
 };
 
 function changeImage(product,size){
@@ -45,41 +425,16 @@ document.getElementById(product + 'Price').innerText =
 
 }
 
-</script>
-</div>
-</section>
-
-<footer id="contacto">
-<p>© 2026 Club de la Fragancia - Todos los derechos reservados</p>
-</footer>
-
-<script>
-
-function changeSize(id,size){
-
-const img = document.getElementById(id);
-
-if(size === '3'){
-img.src = 'images/33_edited.jpg';
-}
-
-if(size === '5'){
-img.src = 'images/34_edited.jpg';
-}
-
-if(size === '10'){
-img.src = 'images/35_edited.jpg';
-}
-
-}
-
 function buyProduct(product){
 
-const message = `Hola, quiero comprar el perfume ${product} en decant.`;
+const message =
+`Hola, quiero comprar el perfume ${product}.`;
 
-const url = `https://wa.me/593999999999?text=${encodeURIComponent(message)}`;
+const url =
+`https://wa.me/593999999999?text=${encodeURIComponent(message)}`;
 
 window.open(url,'_blank');
+
 }
 
 </script>
