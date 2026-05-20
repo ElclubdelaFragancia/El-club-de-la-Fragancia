@@ -313,8 +313,24 @@ cursor:pointer;
 margin-top:10px;
 }
 
-.close-btn{
-background:#222 !important;
+.close-mini{
+position:absolute;
+top:15px;
+right:15px;
+width:35px !important;
+height:35px;
+border:none;
+border-radius:50%;
+background:#1f1f1f !important;
+color:#999 !important;
+font-size:16px;
+cursor:pointer;
+transition:.3s;
+padding:0 !important;
+}
+
+.close-mini:hover{
+background:#333 !important;
 color:white !important;
 }
 
@@ -522,9 +538,9 @@ Finalizar Pedido
 </h2>
 
 <button
-class="close-btn"
+class="close-mini"
 onclick="closeCheckout()">
-Regresar
+✕
 </button>
 
 <input id="nombre" placeholder="Nombres y Apellidos">
@@ -636,7 +652,7 @@ fechaSelect.appendChild(option);
 let cart = [];
 
 const sheetURL =
-'https://docs.google.com/spreadsheets/d/e/2PACX-1vR-f7qVxZ-oOGhGkSTs7l4hIaepmdzieynclQWVjK7FA-vTE37mLnIK8pZoaGZvCYkH7J6T1X_yxv-T/pubhtml';
+'https://docs.google.com/spreadsheets/d/e/2PACX-1vR-f7qVxZ-oOGhGkSTs7l4hIaepmdzieynclQWVjK7FA-vTE37mLnIK8pZoaGZvCYkH7J6T1X_yxv-T/pub?output=csv';
 
 fetch(sheetURL)
 .then(res => res.text())
@@ -649,18 +665,21 @@ rows.forEach(row => {
 
 const cols = row.split(',');
 
-const id = cols[0]?.trim();
-const nombre = cols[1]?.trim();
-const descripcion = cols[2]?.trim();
-const notas = cols[3]?.trim();
-const ocasiones = cols[4]?.trim();
+const nombre = cols[0]?.trim();
 
-const precio3 = cols[5]?.trim();
-const precio5 = cols[6]?.trim();
-const precio10 = cols[7]?.trim();
-const precio100 = cols[8]?.trim();
+const precio3 = cols[1]?.trim();
+const precio5 = cols[2]?.trim();
+const precio10 = cols[3]?.trim();
+const precio100 = cols[4]?.trim();
 
-if(!id || !nombre) return;
+if(!nombre) return;
+
+const id =
+nombre
+.toLowerCase()
+.normalize("NFD")
+.replace(/[\u0300-\u036f]/g, "")
+.replace(/[^a-z0-9]/gi,'');
 
 document.getElementById('productsContainer')
 .innerHTML += `
@@ -678,37 +697,25 @@ src="images/${id}3ml.jpg">
 
 <h3>${nombre}</h3>
 
-<p>${descripcion}</p>
-
-<p>
-<strong>Notas:</strong><br>
-${notas}
-</p>
-
-<p>
-<strong>Ocasiones:</strong><br>
-${ocasiones}
-</p>
-
 <div class="size-options">
 
 <button class="size-btn"
-onclick="changeImage('${id}','3ml',${precio3})">
+onclick="changeImage('${id}','3ml','${precio3}')">
 3ml
 </button>
 
 <button class="size-btn"
-onclick="changeImage('${id}','5ml',${precio5})">
+onclick="changeImage('${id}','5ml','${precio5}')">
 5ml
 </button>
 
 <button class="size-btn"
-onclick="changeImage('${id}','10ml',${precio10})">
+onclick="changeImage('${id}','10ml','${precio10}')">
 10ml
 </button>
 
 <button class="size-btn"
-onclick="changeImage('${id}','100ml',${precio100})">
+onclick="changeImage('${id}','100ml','${precio100}')">
 Botella
 </button>
 
@@ -853,7 +860,7 @@ ${modalidad}
 ${productos}`;
 
 window.open(
-`https://wa.me/593999999999?text=${encodeURIComponent(mensaje)}`,
+`https://wa.me/0995199354?text=${encodeURIComponent(mensaje)}`,
 '_blank'
 );
 
