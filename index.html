@@ -690,7 +690,9 @@ let total = 0;
 
 cart.forEach((item)=>{
 
-total += parseFloat(item.price);
+let precio = parseFloat(item.price);
+if (isNaN(precio)) precio = 0;
+total += precio;
 
 html += `
 
@@ -741,7 +743,7 @@ color:#d4af37;
 margin-left:15px;
 white-space:nowrap;
 ">
-$${item.price}
+$${precio.toFixed(2)}
 </div>
 
 </div>
@@ -750,27 +752,21 @@ $${item.price}
 
 });
 
+// 🔥 ENVÍO
+let envio = shippingCost === null ? 0 : parseFloat(shippingCost);
+if (isNaN(envio)) envio = 0;
+
+// 🔥 FOOTER CORRECTO
 html += `
 
 <div style="
 margin-top:20px;
 padding-top:15px;
 border-top:1px solid #222;
-display:flex;
-justify-content:space-between;
-align-items:center;
-font-size:22px;
-font-weight:700;
-">
-
-<span>Total</span>
-
-<div style="
-margin-top:15px;
-display:flex;
-justify-content:space-between;
 font-size:16px;
 color:#ccc;
+display:flex;
+justify-content:space-between;
 ">
 
 <span>Envío</span>
@@ -778,15 +774,13 @@ color:#ccc;
 <span>
 ${shippingCost === null
 ? 'Pendiente de calcular'
-: '$' + shippingCost.toFixed(2)}
+: '$' + envio.toFixed(2)}
 </span>
 
 </div>
 
 <div style="
-margin-top:20px;
-padding-top:15px;
-border-top:1px solid #222;
+margin-top:15px;
 display:flex;
 justify-content:space-between;
 align-items:center;
@@ -797,10 +791,8 @@ font-weight:700;
 <span>Total</span>
 
 <span style="color:#d4af37;">
-$${(total + (shippingCost || 0)).toFixed(2)}
+$${(total + envio).toFixed(2)}
 </span>
-
-</div>
 
 </div>
 
@@ -1076,10 +1068,8 @@ productos +=
 
 let total = 0;
 
-cart.forEach(p=>{
-
-total += parseFloat(p.price);
-
+cart.forEach(item => {
+total += parseFloat(item.price);
 });
 
 const mensaje =
