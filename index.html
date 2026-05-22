@@ -251,16 +251,47 @@ cursor:pointer;
 position:fixed;
 bottom:25px;
 right:25px;
-background:#d4af37;
-color:black;
-padding:18px;
+width:68px;
+height:68px;
+background:#ffffff;
+border:1px solid #2a2a2a;
 border-radius:50%;
-font-size:22px;
+display:flex;
+justify-content:center;
+align-items:center;
 cursor:pointer;
 z-index:1000;
-font-weight:bold;
+box-shadow:
+0 10px 30px rgba(0,0,0,.45);
+transition:.3s;
 }
 
+.cart-button:hover{
+transform:translateY(-4px);
+background:#f5f5f5;
+}
+
+.cart-icon{
+font-size:28px;
+color:black;
+}
+
+.cart-count{
+position:absolute;
+top:-2px;
+right:-2px;
+background:#ff2d2d;
+color:white;
+width:24px;
+height:24px;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:12px;
+font-weight:700;
+border:2px solid #050505;
+}
 .modal{
 display:none;
 position:fixed;
@@ -547,7 +578,15 @@ Reseñas de Clientes
 </section>
 
 <div class="cart-button" onclick="openCheckout()">
+
+<span class="cart-icon">
 🛒
+</span>
+
+<span class="cart-count" id="cartCount">
+0
+</span>
+
 </div>
 
 <div class="modal" id="checkoutModal">
@@ -779,7 +818,8 @@ function addToCart(product){
 
 cart.push(product);
 
-alert(product + ' agregado al carrito');
+document.getElementById('cartCount').innerText =
+cart.length;
 
 }
 
@@ -883,8 +923,8 @@ ${modalidad}
 ${productos}`;
 
 window.open(
-`https://wa.me/0995199354?text=${encodeURIComponent(mensaje)}`,
-'_blank'
+`https://wa.me/593995199354?text=${encodeURIComponent(mensaje)}`,
+'_self'
 );
 
 }
