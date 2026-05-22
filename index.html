@@ -333,7 +333,28 @@ padding:0 !important;
 background:#333 !important;
 color:white !important;
 }
+.back-btn{
+background:transparent !important;
+border:1px solid #333 !important;
+color:#ccc !important;
+padding:10px 16px !important;
+border-radius:12px !important;
+font-size:14px;
+font-weight:500;
+cursor:pointer;
+transition:.3s;
+margin-bottom:20px;
+width:auto !important;
+display:flex;
+align-items:center;
+gap:8px;
+}
 
+.back-btn:hover{
+background:#1a1a1a !important;
+color:white !important;
+border-color:#555 !important;
+}
 .review-image{
 background:white;
 padding:15px;
@@ -536,7 +557,9 @@ Reseñas de Clientes
 <h2>
 Finalizar Pedido
 </h2>
-
+<button class="back-btn" onclick="closeCheckout()">
+← Regresar
+</button>
 <button
 class="close-mini"
 onclick="closeCheckout()">
