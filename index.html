@@ -549,7 +549,10 @@ Fecha de entrega
 <select id="fecha"></select>
 
 <select id="modalidad" onchange="toggleDelivery()">
-
+<div id="notaRetiro" style="display:none; margin-top:10px; color:#ccc; font-size:13px;">
+<b>Nota:</b> El punto y horario de retiro se coordina por WhatsApp.  
+Da clic en “Enviar pedido” para contactarte con un asesor.
+</div>
 <option value="">
 Modalidad de venta
 </option>
@@ -961,17 +964,30 @@ document.getElementById('modalidad').value;
 const deliveryFields =
 document.getElementById('deliveryFields');
 
+const notaRetiro =
+document.getElementById('notaRetiro');
+
 if(modalidad === 'entrega'){
 
 deliveryFields.classList.remove('hidden');
+notaRetiro.style.display = 'none';
 
-}else{
+}
+
+else if(modalidad === 'retiro'){
 
 deliveryFields.classList.add('hidden');
+notaRetiro.style.display = 'block';
 
 shippingCost = 0;
-
 updateCartUI();
+
+}
+
+else{
+
+deliveryFields.classList.add('hidden');
+notaRetiro.style.display = 'none';
 
 }
 
