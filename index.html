@@ -549,7 +549,7 @@ Fecha de entrega
 
 <select id="fecha"></select>
 
-<select id="modalidad">
+<select id="modalidad" onchange="toggleDelivery()">
 
 <option value="">
 Modalidad de venta
@@ -564,6 +564,48 @@ Retiro
 </option>
 
 </select>
+
+<div id="deliveryFields" class="hidden">
+
+<select id="ciudad" onchange="toggleCiudad()">
+
+<option value="">
+Selecciona ciudad
+</option>
+
+<option value="quito">
+Quito
+</option>
+
+<option value="fuera">
+Fuera de Quito
+</option>
+
+</select>
+
+<div id="quitoFields" class="hidden">
+
+<input placeholder="Dirección">
+<input placeholder="Referencia">
+<input placeholder="Barrio">
+
+</div>
+
+<div id="fueraFields" class="hidden">
+
+<p style="margin-bottom:15px;color:#ccc;">
+El envío se realiza mediante Servientrega.
+</p>
+
+<input placeholder="Nombres completos de quien recibe">
+<input placeholder="Cédula">
+<input placeholder="Dirección">
+<input placeholder="Referencia">
+<input placeholder="Celular">
+
+</div>
+
+</div>
 
 <button onclick="sendWhatsApp()">
 Enviar Pedido
