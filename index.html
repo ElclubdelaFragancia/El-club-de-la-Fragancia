@@ -386,6 +386,38 @@ background:#1a1a1a !important;
 color:white !important;
 border-color:#555 !important;
 }
+  .cart-summary{
+background:#0d0d0d;
+border:1px solid #222;
+border-radius:18px;
+padding:20px;
+margin-bottom:25px;
+}
+
+.cart-summary h3{
+font-size:18px;
+margin-bottom:15px;
+color:white;
+}
+
+.cart-item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:12px 0;
+border-bottom:1px solid #1f1f1f;
+color:#ddd;
+font-size:15px;
+}
+
+.cart-item:last-child{
+border-bottom:none;
+}
+
+.empty-cart{
+color:#777;
+font-size:14px;
+}
 .review-image{
 background:white;
 padding:15px;
@@ -594,7 +626,7 @@ Reseñas de Clientes
 <div class="modal-content">
 
 <h2>
-Finalizar Pedido
+Tu Carrito
 </h2>
 <button class="back-btn" onclick="closeCheckout()">
 ← Regresar
@@ -604,8 +636,23 @@ class="close-mini"
 onclick="closeCheckout()">
 ✕
 </button>
+<div class="cart-summary">
+
+<h3>
+Resumen del Pedido
+</h3>
+
+<div id="cartItems">
+Tu carrito está vacío
+</div>
+
+</div>
 
 <input id="nombre" placeholder="Nombres y Apellidos">
+
+<label style="display:block;margin-bottom:10px;color:#bbb;font-size:14px;">
+Fecha de entrega
+</label>
 
 <select id="fecha"></select>
 
@@ -712,6 +759,39 @@ fechaSelect.appendChild(option);
 }
 
 let cart = [];
+function updateCartUI(){
+
+const cartItems =
+document.getElementById('cartItems');
+
+if(cart.length === 0){
+
+cartItems.innerHTML =
+'<div class="empty-cart">Tu carrito está vacío</div>';
+
+return;
+
+}
+
+let html = '';
+
+cart.forEach((item,index)=>{
+
+html += `
+<div class="cart-item">
+
+<span>${item}</span>
+
+<span>#${index + 1}</span>
+
+</div>
+`;
+
+});
+
+cartItems.innerHTML = html;
+
+}
 
 const sheetURL =
 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR-f7qVxZ-oOGhGkSTs7l4hIaepmdzieynclQWVjK7FA-vTE37mLnIK8pZoaGZvCYkH7J6T1X_yxv-T/pub?output=csv';
@@ -821,9 +901,13 @@ cart.push(product);
 document.getElementById('cartCount').innerText =
 cart.length;
 
+updateCartUI();
+
 }
 
 function openCheckout(){
+
+updateCartUI();
 
 document.getElementById('checkoutModal')
 .style.display='flex';
