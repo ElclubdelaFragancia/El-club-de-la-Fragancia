@@ -759,6 +759,9 @@ fechaSelect.appendChild(option);
 }
 
 let cart = [];
+let selectedSize = {};
+let selectedPrice = {};
+let selectedImage = {};
 function updateCartUI(){
 
 const cartItems =
@@ -770,6 +773,68 @@ cartItems.innerHTML =
 '<div class="empty-cart">Tu carrito está vacío</div>';
 
 return;
+
+}
+
+let html = '';
+
+cart.forEach((item,index)=>{
+
+html += `
+
+<div class="cart-item">
+
+<div style="
+display:flex;
+align-items:center;
+gap:15px;
+">
+
+<img
+src="${item.image}"
+style="
+width:55px;
+height:55px;
+object-fit:contain;
+background:white;
+padding:5px;
+border-radius:10px;
+">
+
+<div>
+
+<div style="
+font-weight:600;
+margin-bottom:4px;
+">
+${item.nombre}
+</div>
+
+<div style="
+font-size:13px;
+color:#888;
+">
+${item.size}
+</div>
+
+</div>
+
+</div>
+
+<div style="
+font-weight:700;
+color:#d4af37;
+">
+$${item.price}
+</div>
+
+</div>
+
+`;
+
+});
+
+cartItems.innerHTML = html;
 
 }
 
@@ -822,6 +887,10 @@ nombre
 .normalize("NFD")
 .replace(/[\u0300-\u036f]/g, "")
 .replace(/[^a-z0-9]/gi,'');
+selectedSize[id] = '3ml';
+selectedPrice[id] = precio3;
+selectedImage[id] =
+`images/${id}3ml.jpg`;
 
 document.getElementById('productsContainer')
 .innerHTML += `
@@ -868,7 +937,12 @@ $${precio3}
 </div>
 
 <button class="buy-btn"
-onclick="addToCart('${nombre}')">
+onclick="addToCart(
+'${nombre}',
+selectedSize['${id}'],
+selectedPrice['${id}'],
+selectedImage['${id}']
+)">
 
 Agregar al carrito
 
@@ -892,11 +966,23 @@ document.getElementById(product + 'Image').src =
 document.getElementById(product + 'Price').innerText =
 '$' + price;
 
+selectedSize[product] = size;
+
+selectedPrice[product] = price;
+
+selectedImage[product] =
+`images/${product}${size}.jpg`;
+
 }
 
-function addToCart(product){
+function addToCart(nombre,size,price,image){
 
-cart.push(product);
+cart.push({
+nombre,
+size,
+price,
+image
+});
 
 document.getElementById('cartCount').innerText =
 cart.length;
@@ -904,7 +990,6 @@ cart.length;
 updateCartUI();
 
 }
-
 function openCheckout(){
 
 updateCartUI();
@@ -989,9 +1074,11 @@ document.getElementById('modalidad').value;
 let productos = '';
 
 cart.forEach(p=>{
-productos += '- ' + p + '%0A';
-});
 
+productos +=
+`- ${p.nombre} (${p.size}) - $${p.price}%0A`;
+
+});
 const mensaje =
 `🛍️ Pedido Club de la Fragancia
 
