@@ -510,7 +510,6 @@ fechaSelect.appendChild(option);
 }
 
 let cart = [];
-
 let selectedSize = {};
 let selectedPrice = {};
 let selectedImage = {};
@@ -520,16 +519,10 @@ function updateCartUI(){
 const cartItems =
 document.getElementById('cartItems');
 
-const cartTotal =
-document.getElementById('cartTotal');
-
 if(cart.length === 0){
 
 cartItems.innerHTML =
-'<div style="color:#777;">Tu carrito está vacío</div>';
-
-cartTotal.innerText =
-'Total: $0';
+'<div class="empty-cart">Tu carrito está vacío</div>';
 
 return;
 
@@ -541,7 +534,7 @@ let total = 0;
 
 cart.forEach((item,index)=>{
 
-total += parseFloat(item.price) || 0;
+total += parseFloat(item.price);
 
 html += `
 
@@ -568,6 +561,7 @@ border-radius:10px;
 
 <div style="
 font-weight:600;
+margin-bottom:4px;
 ">
 ${item.nombre}
 </div>
@@ -596,10 +590,30 @@ $${item.price}
 
 });
 
-cartItems.innerHTML = html;
+html += `
 
-cartTotal.innerText =
-`Total: $${total.toFixed(2)}`;
+<div style="
+margin-top:20px;
+padding-top:15px;
+border-top:1px solid #222;
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-size:20px;
+font-weight:700;
+">
+
+<span>Total</span>
+
+<span style="color:#d4af37;">
+$${total.toFixed(2)}
+</span>
+
+</div>
+
+`;
+
+cartItems.innerHTML = html;
 
 }
 
@@ -607,9 +621,7 @@ const sheetURL =
 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR-f7qVxZ-oOGhGkSTs7l4hIaepmdzieynclQWVjK7FA-vTE37mLnIK8pZoaGZvCYkH7J6T1X_yxv-T/pub?output=csv';
 
 fetch(sheetURL)
-
 .then(res => res.text())
-
 .then(data => {
 
 const rows =
@@ -617,23 +629,14 @@ data.trim().split('\n').slice(1);
 
 rows.forEach(row => {
 
-const cols =
-row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
+const cols = row.split(',');
 
-const nombre =
-cols[0]?.replace(/"/g,'').trim();
+const nombre = cols[0]?.trim();
 
-const precio3 =
-cols[1]?.replace(/"/g,'').trim();
-
-const precio5 =
-cols[2]?.replace(/"/g,'').trim();
-
-const precio10 =
-cols[3]?.replace(/"/g,'').trim();
-
-const precio100 =
-cols[4]?.replace(/"/g,'').trim();
+const precio3 = cols[1]?.trim();
+const precio5 = cols[2]?.trim();
+const precio10 = cols[3]?.trim();
+const precio100 = cols[4]?.trim();
 
 if(!nombre) return;
 
@@ -641,7 +644,7 @@ const id =
 nombre
 .toLowerCase()
 .normalize("NFD")
-.replace(/[\u0300-\u036f]/g,"")
+.replace(/[\u0300-\u036f]/g, "")
 .replace(/[^a-z0-9]/gi,'');
 
 selectedSize[id] = '3ml';
@@ -656,10 +659,8 @@ document.getElementById('productsContainer')
 
 <div class="product-image">
 
-<img
-id="${id}Image"
-src="images/${id}3ml.jpg"
-onerror="this.src='images/default.jpg'">
+<img id="${id}Image"
+src="images/${id}3ml.jpg">
 
 </div>
 
@@ -697,7 +698,7 @@ $${precio3}
 
 <button class="buy-btn"
 onclick="addToCart(
-'${nombre.replace(/'/g,"\\'")}',
+'${nombre}',
 selectedSize['${id}'],
 selectedPrice['${id}'],
 selectedImage['${id}']
@@ -718,14 +719,6 @@ Agregar al carrito
 });
 
 function changeImage(product,size,price){
-
-if(!price || price === '0'){
-
-alert('No disponible');
-
-return;
-
-}
 
 document.getElementById(product + 'Image').src =
 `images/${product}${size}.jpg`;
@@ -774,15 +767,53 @@ document.getElementById('checkoutModal')
 
 }
 
-function sendWhatsApp(){
+function toggleDelivery(){
 
-if(cart.length === 0){
+const modalidad =
+document.getElementById('modalidad').value;
 
-alert('Tu carrito está vacío');
+if(modalidad === 'entrega'){
 
-return;
+document.getElementById('deliveryFields')
+.classList.remove('hidden');
+
+}else{
+
+document.getElementById('deliveryFields')
+.classList.add('hidden');
 
 }
+
+}
+
+function toggleCiudad(){
+
+const ciudad =
+document.getElementById('ciudad').value;
+
+document.getElementById('quitoFields')
+.classList.add('hidden');
+
+document.getElementById('fueraFields')
+.classList.add('hidden');
+
+if(ciudad === 'quito'){
+
+document.getElementById('quitoFields')
+.classList.remove('hidden');
+
+}
+
+if(ciudad === 'fuera'){
+
+document.getElementById('fueraFields')
+.classList.remove('hidden');
+
+}
+
+}
+
+function sendWhatsApp(){
 
 const nombre =
 document.getElementById('nombre').value.trim();
@@ -803,24 +834,25 @@ document.getElementById('modalidad').value;
 
 let productos = '';
 
-let total = 0;
-
 cart.forEach(p=>{
 
 productos +=
-`- ${p.nombre} (${p.size}) - $${p.price}\n`;
-
-total += parseFloat(p.price) || 0;
+`- ${p.nombre} (${p.size}) - $${p.price}%0A`;
 
 });
 
-const mensaje =
+let total = 0;
 
+cart.forEach(p=>{
+total += parseFloat(p.price);
+});
+
+const mensaje =
 `🛍️ Pedido Club de la Fragancia
 
 👤 Cliente: ${nombre}
 
-📅 Fecha:
+📅 Fecha de entrega:
 ${fecha}
 
 🚚 Modalidad:
@@ -830,12 +862,11 @@ ${modalidad}
 ${productos}
 
 💰 Total:
-$${total.toFixed(2)}
-`;
+$${total.toFixed(2)}`;
 
 window.open(
 `https://wa.me/593995199354?text=${encodeURIComponent(mensaje)}`,
-'_blank'
+'_self'
 );
 
 }
