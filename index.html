@@ -566,7 +566,7 @@ Retiro
 
 <div id="deliveryFields" class="hidden">
 
-<select id="ciudad" onchange="toggleCiudad()">
+<select id="ciudad" onchange="toggleCiudadYEnvio()">
 
 <option value="">
 Selecciona ciudad
@@ -578,6 +578,22 @@ Quito
 
 <option value="fuera">
 Fuera de Quito
+</option>
+
+</select>
+
+<select id="zonaQuito" class="hidden" onchange="updateCartUI()">
+
+<option value="">
+Selecciona zona de Quito
+</option>
+
+<option value="perimetro">
+Perímetro Urbano (Labrador - Quitumbe) $3.25
+</option>
+
+<option value="fuera_perimetro">
+Fuera del perímetro $4.50
 </option>
 
 </select>
@@ -749,9 +765,42 @@ font-weight:700;
 
 <span>Total</span>
 
-<span style="color:#d4af37;">
-$${total.toFixed(2)}
+<div style="
+margin-top:15px;
+display:flex;
+justify-content:space-between;
+font-size:16px;
+color:#ccc;
+">
+
+<span>Envío</span>
+
+<span>
+${shippingCost === null
+? 'Pendiente de calcular'
+: '$' + shippingCost.toFixed(2)}
 </span>
+
+</div>
+
+<div style="
+margin-top:20px;
+padding-top:15px;
+border-top:1px solid #222;
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-size:22px;
+font-weight:700;
+">
+
+<span>Total</span>
+
+<span style="color:#d4af37;">
+$${(total + (shippingCost || 0)).toFixed(2)}
+</span>
+
+</div>
 
 </div>
 
@@ -910,26 +959,33 @@ document.getElementById('checkoutModal')
 
 }
 
+let shippingCost = null;
+
 function toggleDelivery(){
 
 const modalidad =
 document.getElementById('modalidad').value;
 
+const deliveryFields =
+document.getElementById('deliveryFields');
+
 if(modalidad === 'entrega'){
 
-document.getElementById('deliveryFields')
-.classList.remove('hidden');
+deliveryFields.classList.remove('hidden');
 
 }else{
 
-document.getElementById('deliveryFields')
-.classList.add('hidden');
+deliveryFields.classList.add('hidden');
+
+shippingCost = 0;
+
+updateCartUI();
 
 }
 
 }
 
-function toggleCiudad(){
+function toggleCiudadYEnvio(){
 
 const ciudad =
 document.getElementById('ciudad').value;
@@ -940,10 +996,18 @@ document.getElementById('quitoFields')
 document.getElementById('fueraFields')
 .classList.add('hidden');
 
+document.getElementById('zonaQuito')
+.classList.add('hidden');
+
 if(ciudad === 'quito'){
 
 document.getElementById('quitoFields')
 .classList.remove('hidden');
+
+document.getElementById('zonaQuito')
+.classList.remove('hidden');
+
+shippingCost = null;
 
 }
 
@@ -952,10 +1016,36 @@ if(ciudad === 'fuera'){
 document.getElementById('fueraFields')
 .classList.remove('hidden');
 
-}
+shippingCost = 6.75;
 
 }
 
+updateCartUI();
+
+}
+
+function calcularEnvio(){
+
+const zona =
+document.getElementById('zonaQuito').value;
+
+if(zona === 'dentro'){
+
+shippingCost = 3.25;
+
+}else if(zona === 'fuera'){
+
+shippingCost = 4.50;
+
+}else{
+
+shippingCost = null;
+
+}
+
+updateCartUI();
+
+}
 function sendWhatsApp(){
 
 const nombre =
