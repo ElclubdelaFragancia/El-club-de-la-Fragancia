@@ -1056,7 +1056,23 @@ document.getElementById('fecha').value;
 
 const modalidad =
 document.getElementById('modalidad').value;
+  const direccion =
+document.getElementById('direccion')?.value || '';
 
+const referencia =
+document.getElementById('referencia')?.value || '';
+
+const servientrega =
+document.getElementById('servientrega')?.value || '';
+  
+  let mensajeRetiro = '';
+
+if (modalidad === 'retiro') {
+mensajeRetiro = `
+📍 El punto y horario de retiro se coordina por WhatsApp.
+Da clic en “Enviar pedido” para dirigirte a WhatsApp y contactarte con un asesor.
+`;
+}
 let productos = '';
 
 cart.forEach(p=>{
@@ -1071,6 +1087,52 @@ let total = 0;
 cart.forEach(item => {
 total += parseFloat(item.price);
 });
+let datosEnvio = '';
+
+if (modalidad === 'retiro') {
+
+datosEnvio = `
+🚚 MODALIDAD: RETIRO
+
+📍 El punto y horario de retiro se coordina por WhatsApp.
+`;
+
+}
+
+else if (modalidad === 'entrega' && ciudad === 'quito') {
+
+datosEnvio = `
+🚚 MODALIDAD: ENTREGA LOCAL (QUITO)
+
+📍 Dirección:
+${direccion}
+
+🧭 Referencia:
+${referencia}
+`;
+
+}
+
+else if (modalidad === 'entrega' && ciudad === 'fuera') {
+
+datosEnvio = `
+📦 MODALIDAD: ENVÍO POR SERVIENTREGA
+
+📋 DATOS PARA LA GUÍA:
+
+📍 Dirección:
+${direccion}
+
+🧭 Referencia:
+${referencia}
+
+👤 Destinatario:
+${nombre}
+
+🚚 Servicio: Servientrega
+`;
+
+}
 
 const mensaje =
 `🛍️ Pedido Club de la Fragancia
@@ -1082,6 +1144,10 @@ ${fecha}
 
 🚚 Modalidad:
 ${modalidad}
+
+🚚 INFORMACIÓN DE ENVÍO:
+
+${datosEnvio}
 
 🧴 Productos:
 ${productos}
