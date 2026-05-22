@@ -73,6 +73,7 @@ padding:20px;
 background:
 linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.85)),
 url('images/banner.jpg');
+
 background-size:cover;
 background-position:center;
 }
@@ -122,37 +123,6 @@ color:#ccc;
 font-size:18px;
 }
 
-.decant-grid{
-display:flex;
-justify-content:center;
-gap:30px;
-flex-wrap:wrap;
-margin-top:50px;
-}
-
-.decant-card{
-background:#111;
-padding:20px;
-border-radius:20px;
-width:280px;
-border:1px solid #222;
-text-align:center;
-}
-
-.decant-card img{
-width:100%;
-border-radius:15px;
-background:white;
-padding:15px;
-height:280px;
-object-fit:contain;
-}
-
-.decant-card h3{
-margin-top:20px;
-font-size:28px;
-}
-
 .products-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
@@ -196,12 +166,6 @@ padding:25px;
 .product-info h3{
 font-size:28px;
 margin-bottom:15px;
-}
-
-.product-info p{
-color:#bbb;
-line-height:1.8;
-margin-bottom:20px;
 }
 
 .size-options{
@@ -253,22 +217,14 @@ bottom:25px;
 right:25px;
 width:68px;
 height:68px;
-background:#ffffff;
-border:1px solid #2a2a2a;
+background:#fff;
 border-radius:50%;
 display:flex;
 justify-content:center;
 align-items:center;
 cursor:pointer;
 z-index:1000;
-box-shadow:
-0 10px 30px rgba(0,0,0,.45);
-transition:.3s;
-}
-
-.cart-button:hover{
-transform:translateY(-4px);
-background:#f5f5f5;
+box-shadow:0 10px 30px rgba(0,0,0,.45);
 }
 
 .cart-icon{
@@ -280,7 +236,7 @@ color:black;
 position:absolute;
 top:-2px;
 right:-2px;
-background:#ff2d2d;
+background:red;
 color:white;
 width:24px;
 height:24px;
@@ -290,8 +246,8 @@ justify-content:center;
 align-items:center;
 font-size:12px;
 font-weight:700;
-border:2px solid #050505;
 }
+
 .modal{
 display:none;
 position:fixed;
@@ -316,10 +272,7 @@ max-height:90vh;
 overflow:auto;
 border:1px solid #222;
 position:relative;
-}
-
-.modal-content h2{
-margin-bottom:25px;
+-webkit-overflow-scrolling:touch;
 }
 
 .modal-content input,
@@ -354,50 +307,15 @@ border:none;
 border-radius:50%;
 background:#1f1f1f !important;
 color:#999 !important;
-font-size:16px;
 cursor:pointer;
-transition:.3s;
-padding:0 !important;
 }
 
-.close-mini:hover{
-background:#333 !important;
-color:white !important;
-}
-.back-btn{
-background:transparent !important;
-border:1px solid #333 !important;
-color:#ccc !important;
-padding:10px 16px !important;
-border-radius:12px !important;
-font-size:14px;
-font-weight:500;
-cursor:pointer;
-transition:.3s;
-margin-bottom:20px;
-width:auto !important;
-display:flex;
-align-items:center;
-gap:8px;
-}
-
-.back-btn:hover{
-background:#1a1a1a !important;
-color:white !important;
-border-color:#555 !important;
-}
-  .cart-summary{
+.cart-summary{
 background:#0d0d0d;
 border:1px solid #222;
 border-radius:18px;
 padding:20px;
 margin-bottom:25px;
-}
-
-.cart-summary h3{
-font-size:18px;
-margin-bottom:15px;
-color:white;
 }
 
 .cart-item{
@@ -406,26 +324,18 @@ justify-content:space-between;
 align-items:center;
 padding:12px 0;
 border-bottom:1px solid #1f1f1f;
-color:#ddd;
-font-size:15px;
 }
 
-.cart-item:last-child{
-border-bottom:none;
+.total{
+margin-top:20px;
+font-size:24px;
+font-weight:700;
+color:#d4af37;
+text-align:right;
 }
 
-.empty-cart{
-color:#777;
-font-size:14px;
-}
-.review-image{
-background:white;
-padding:15px;
-}
-
-.review-image img{
-width:100%;
-border-radius:15px;
+.hidden{
+display:none;
 }
 
 footer{
@@ -433,10 +343,6 @@ padding:40px 20px;
 text-align:center;
 background:#000;
 border-top:1px solid #222;
-}
-
-.hidden{
-display:none;
 }
 
 @media(max-width:768px){
@@ -468,7 +374,6 @@ CLUB DE LA FRAGANCIA
 <nav>
 <a href="#inicio">Inicio</a>
 <a href="#catalogo">Catálogo</a>
-<a href="#reviews">Reseñas</a>
 </nav>
 
 </header>
@@ -480,89 +385,12 @@ CLUB DE LA FRAGANCIA
 <h1>Club de la Fragancia</h1>
 
 <p>
-Descubre fragancias originales en presentaciones de
-3ml, 5ml, 10ml o botella completa.
+Fragancias originales en 3ml, 5ml, 10ml o botella completa.
 </p>
 
 <button onclick="document.getElementById('catalogo').scrollIntoView()">
 Explorar Catálogo
 </button>
-
-</div>
-
-</section>
-
-<section class="section">
-
-<h2 class="section-title">
-¿Qué es un Decant?
-</h2>
-
-<p class="section-text">
-Un decant es una pequeña cantidad de perfume original
-extraída directamente de la botella auténtica.
-Te permite probar fragancias exclusivas de forma más accesible
-y práctica.
-</p>
-
-<div class="decant-grid">
-
-<div class="decant-card">
-
-<img src="images/decant3ml.jpg">
-
-<h3>3ml</h3>
-
-<p style="margin-top:15px;color:#ccc;line-height:1.8;">
-Tamaño 6cm de alto x 1.4cm de grosor
-<br><br>
-(50-55 atomizaciones)
-</p>
-
-</div>
-
-<div class="decant-card">
-
-<img src="images/decant5ml.jpg">
-
-<h3>5ml</h3>
-
-<p style="margin-top:15px;color:#ccc;line-height:1.8;">
-Tamaño 7.6cm de alto x 1.4cm de grosor
-<br><br>
-(85-90 atomizaciones)
-</p>
-
-</div>
-
-<div class="decant-card">
-
-<img src="images/decant10ml.jpg">
-
-<h3>10ml</h3>
-
-<p style="margin-top:15px;color:#ccc;line-height:1.8;">
-Tamaño 12cm de alto x 1.4cm de grosor
-<br><br>
-(150-160 atomizaciones)
-</p>
-
-</div>
-
-</div>
-
-<div style="max-width:900px;margin:60px auto 0 auto;">
-
-<video controls
-style="
-width:100%;
-border-radius:20px;
-border:1px solid #222;
-">
-
-<source src="images/videodecant.mp4" type="video/mp4">
-
-</video>
 
 </div>
 
@@ -579,41 +407,9 @@ Catálogo Premium
 
 </section>
 
-<section class="section" id="reviews">
-
-<h2 class="section-title">
-Reseñas de Clientes
-</h2>
-
-<div class="products-grid">
-
-<div class="product-card">
-<div class="review-image">
-<img src="images/testimonio1.jpg">
-</div>
-</div>
-
-<div class="product-card">
-<div class="review-image">
-<img src="images/testimonio2.jpg">
-</div>
-</div>
-
-<div class="product-card">
-<div class="review-image">
-<img src="images/testimonio3.jpg">
-</div>
-</div>
-
-</div>
-
-</section>
-
 <div class="cart-button" onclick="openCheckout()">
 
-<span class="cart-icon">
-🛒
-</span>
+<span class="cart-icon">🛒</span>
 
 <span class="cart-count" id="cartCount">
 0
@@ -625,38 +421,35 @@ Reseñas de Clientes
 
 <div class="modal-content">
 
+<button class="close-mini" onclick="closeCheckout()">
+✕
+</button>
+
 <h2>
 Tu Carrito
 </h2>
-<button class="back-btn" onclick="closeCheckout()">
-← Regresar
-</button>
-<button
-class="close-mini"
-onclick="closeCheckout()">
-✕
-</button>
-<div class="cart-summary">
 
-<h3>
-Resumen del Pedido
-</h3>
+<div class="cart-summary">
 
 <div id="cartItems">
 Tu carrito está vacío
+</div>
+
+<div class="total" id="cartTotal">
+Total: $0
 </div>
 
 </div>
 
 <input id="nombre" placeholder="Nombres y Apellidos">
 
-<label style="display:block;margin-bottom:10px;color:#bbb;font-size:14px;">
+<label style="color:#bbb;font-size:14px;">
 Fecha de entrega
 </label>
 
 <select id="fecha"></select>
 
-<select id="modalidad" onchange="toggleDelivery()">
+<select id="modalidad">
 
 <option value="">
 Modalidad de venta
@@ -671,48 +464,6 @@ Retiro
 </option>
 
 </select>
-
-<div id="deliveryFields" class="hidden">
-
-<select id="ciudad" onchange="toggleCiudad()">
-
-<option value="">
-Selecciona ciudad
-</option>
-
-<option value="quito">
-Quito
-</option>
-
-<option value="fuera">
-Fuera de Quito
-</option>
-
-</select>
-
-<div id="quitoFields" class="hidden">
-
-<input placeholder="Dirección">
-<input placeholder="Referencia">
-<input placeholder="Barrio">
-
-</div>
-
-<div id="fueraFields" class="hidden">
-
-<p style="margin-bottom:15px;color:#ccc;">
-El envío se realiza mediante Servientrega.
-</p>
-
-<input placeholder="Nombres completos de quien recibe">
-<input placeholder="Cédula">
-<input placeholder="Dirección">
-<input placeholder="Referencia">
-<input placeholder="Celular">
-
-</div>
-
-</div>
 
 <button onclick="sendWhatsApp()">
 Enviar Pedido
@@ -759,18 +510,26 @@ fechaSelect.appendChild(option);
 }
 
 let cart = [];
+
 let selectedSize = {};
 let selectedPrice = {};
 let selectedImage = {};
+
 function updateCartUI(){
 
 const cartItems =
 document.getElementById('cartItems');
 
+const cartTotal =
+document.getElementById('cartTotal');
+
 if(cart.length === 0){
 
 cartItems.innerHTML =
-'<div class="empty-cart">Tu carrito está vacío</div>';
+'<div style="color:#777;">Tu carrito está vacío</div>';
+
+cartTotal.innerText =
+'Total: $0';
 
 return;
 
@@ -778,7 +537,11 @@ return;
 
 let html = '';
 
+let total = 0;
+
 cart.forEach((item,index)=>{
+
+total += parseFloat(item.price) || 0;
 
 html += `
 
@@ -805,7 +568,6 @@ border-radius:10px;
 
 <div style="
 font-weight:600;
-margin-bottom:4px;
 ">
 ${item.nombre}
 </div>
@@ -836,25 +598,8 @@ $${item.price}
 
 cartItems.innerHTML = html;
 
-}
-
-let html = '';
-
-cart.forEach((item,index)=>{
-
-html += `
-<div class="cart-item">
-
-<span>${item}</span>
-
-<span>#${index + 1}</span>
-
-</div>
-`;
-
-});
-
-cartItems.innerHTML = html;
+cartTotal.innerText =
+`Total: $${total.toFixed(2)}`;
 
 }
 
@@ -862,7 +607,9 @@ const sheetURL =
 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR-f7qVxZ-oOGhGkSTs7l4hIaepmdzieynclQWVjK7FA-vTE37mLnIK8pZoaGZvCYkH7J6T1X_yxv-T/pub?output=csv';
 
 fetch(sheetURL)
+
 .then(res => res.text())
+
 .then(data => {
 
 const rows =
@@ -870,14 +617,23 @@ data.trim().split('\n').slice(1);
 
 rows.forEach(row => {
 
-const cols = row.split(',');
+const cols =
+row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
 
-const nombre = cols[0]?.trim();
+const nombre =
+cols[0]?.replace(/"/g,'').trim();
 
-const precio3 = cols[1]?.trim();
-const precio5 = cols[2]?.trim();
-const precio10 = cols[3]?.trim();
-const precio100 = cols[4]?.trim();
+const precio3 =
+cols[1]?.replace(/"/g,'').trim();
+
+const precio5 =
+cols[2]?.replace(/"/g,'').trim();
+
+const precio10 =
+cols[3]?.replace(/"/g,'').trim();
+
+const precio100 =
+cols[4]?.replace(/"/g,'').trim();
 
 if(!nombre) return;
 
@@ -885,8 +641,9 @@ const id =
 nombre
 .toLowerCase()
 .normalize("NFD")
-.replace(/[\u0300-\u036f]/g, "")
+.replace(/[\u0300-\u036f]/g,"")
 .replace(/[^a-z0-9]/gi,'');
+
 selectedSize[id] = '3ml';
 selectedPrice[id] = precio3;
 selectedImage[id] =
@@ -899,8 +656,10 @@ document.getElementById('productsContainer')
 
 <div class="product-image">
 
-<img id="${id}Image"
-src="images/${id}3ml.jpg">
+<img
+id="${id}Image"
+src="images/${id}3ml.jpg"
+onerror="this.src='images/default.jpg'">
 
 </div>
 
@@ -938,7 +697,7 @@ $${precio3}
 
 <button class="buy-btn"
 onclick="addToCart(
-'${nombre}',
+'${nombre.replace(/'/g,"\\'")}',
 selectedSize['${id}'],
 selectedPrice['${id}'],
 selectedImage['${id}']
@@ -959,6 +718,14 @@ Agregar al carrito
 });
 
 function changeImage(product,size,price){
+
+if(!price || price === '0'){
+
+alert('No disponible');
+
+return;
+
+}
 
 document.getElementById(product + 'Image').src =
 `images/${product}${size}.jpg`;
@@ -990,6 +757,7 @@ cart.length;
 updateCartUI();
 
 }
+
 function openCheckout(){
 
 updateCartUI();
@@ -1006,53 +774,15 @@ document.getElementById('checkoutModal')
 
 }
 
-function toggleDelivery(){
-
-const modalidad =
-document.getElementById('modalidad').value;
-
-if(modalidad === 'entrega'){
-
-document.getElementById('deliveryFields')
-.classList.remove('hidden');
-
-}else{
-
-document.getElementById('deliveryFields')
-.classList.add('hidden');
-
-}
-
-}
-
-function toggleCiudad(){
-
-const ciudad =
-document.getElementById('ciudad').value;
-
-document.getElementById('quitoFields')
-.classList.add('hidden');
-
-document.getElementById('fueraFields')
-.classList.add('hidden');
-
-if(ciudad === 'quito'){
-
-document.getElementById('quitoFields')
-.classList.remove('hidden');
-
-}
-
-if(ciudad === 'fuera'){
-
-document.getElementById('fueraFields')
-.classList.remove('hidden');
-
-}
-
-}
-
 function sendWhatsApp(){
+
+if(cart.length === 0){
+
+alert('Tu carrito está vacío');
+
+return;
+
+}
 
 const nombre =
 document.getElementById('nombre').value.trim();
@@ -1073,29 +803,39 @@ document.getElementById('modalidad').value;
 
 let productos = '';
 
+let total = 0;
+
 cart.forEach(p=>{
 
 productos +=
-`- ${p.nombre} (${p.size}) - $${p.price}%0A`;
+`- ${p.nombre} (${p.size}) - $${p.price}\n`;
+
+total += parseFloat(p.price) || 0;
 
 });
+
 const mensaje =
+
 `🛍️ Pedido Club de la Fragancia
 
 👤 Cliente: ${nombre}
 
-📅 Fecha de entrega:
+📅 Fecha:
 ${fecha}
 
 🚚 Modalidad:
 ${modalidad}
 
 🧴 Productos:
-${productos}`;
+${productos}
+
+💰 Total:
+$${total.toFixed(2)}
+`;
 
 window.open(
 `https://wa.me/593995199354?text=${encodeURIComponent(mensaje)}`,
-'_self'
+'_blank'
 );
 
 }
@@ -1103,4 +843,7 @@ window.open(
 </script>
 
 </body>
+
 </html>
+
+
