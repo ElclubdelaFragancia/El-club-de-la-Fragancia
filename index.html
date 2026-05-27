@@ -683,7 +683,7 @@ cart.forEach((item)=>{
 let precio = parseFloat(item.price);
 if (isNaN(precio)) precio = 0;
 total += precio;
-html += <div class="cart-item">
+html += `<div class="cart-item">`
 <div style="
 display:flex;
 align-items:center;
@@ -788,7 +788,7 @@ selectedPrice[id] = precio3;
 selectedImage[id] = images/${id}3ml.jpg;
 
 document.getElementById('productsContainer')
-.innerHTML += <div class="product-card">
+innerHTML += `<div class="product-card">
 <div class="product-image">
 <img id="${id}Image" src="images/${id}3ml.jpg">
 </div>
@@ -826,7 +826,7 @@ Agregar al carrito
 });
 
 function changeImage(product,size,price){
-document.getElementById(product + 'Image').src = images/${product}${size}.jpg;
+document.getElementById(product + 'Image').src = `images/${product}${size}.jpg`;
 document.getElementById(product + 'Price').innerText = '$' + price;
 selectedSize[product] = size;
 selectedPrice[product] = price;
