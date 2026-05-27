@@ -549,8 +549,23 @@ Fecha de entrega
 <select id="fecha"></select>
 
 <select id="modalidad" onchange="toggleDelivery()">
+
+<option value="">
+Modalidad de venta
+</option>
+
+<option value="entrega">
+Entrega
+</option>
+
+<option value="retiro">
+Retiro
+</option>
+
+</select>
+
 <div id="notaRetiro" style="display:none; margin-top:10px; color:#ccc; font-size:13px;">
-<b>Nota:</b> El punto y horario de retiro se coordina por WhatsApp.  
+<b>Nota:</b> El punto y horario de retiro se coordina por WhatsApp.
 Da clic en “Enviar pedido” para contactarte con un asesor.
 </div>
 <option value="">
@@ -998,24 +1013,7 @@ notaRetiro.style.display = 'none';
 
 }
 
-else if(modalidad === 'retiro'){
 
-deliveryFields.classList.add('hidden');
-notaRetiro.style.display = 'block';
-
-shippingCost = 0;
-updateCartUI();
-
-}
-
-else{
-
-deliveryFields.classList.add('hidden');
-notaRetiro.style.display = 'none';
-
-}
-
-}
 
 else if(modalidad === 'retiro'){
 
@@ -1080,11 +1078,11 @@ function calcularEnvio(){
 const zona =
 document.getElementById('zonaQuito').value;
 
-if(zona === 'dentro'){
+if(zona === 'perimetro'){
 
 shippingCost = 3.25;
 
-}else if(zona === 'fuera'){
+}else if(zona === 'fuera_perimetro''){
 
 shippingCost = 4.50;
 
@@ -1227,30 +1225,33 @@ ${celularServi}
 }
 
 const mensaje =
-`🛍️ Pedido Club de la Fragancia
+const mensaje =
+`📦 *Pedido Club de la Fragancia*
 
-👤 Cliente: ${nombre}
+👤 *Cliente:*
+${nombre}
 
-📅 Fecha de entrega:
+📅 *Fecha de entrega:*
 ${fecha}
 
-🚚 Modalidad:
+🚚 *Modalidad:*
 ${modalidad}
 
-🚚 INFORMACIÓN DE ENVÍO:
+📍 *Información de envío:*
 ${datosEnvio}
 
-🧴 Productos:
+🧴 *Productos:*
 ${productos}
 
-💰 Subtotal:
+💰 *Subtotal:*
 $${total.toFixed(2)}
 
-🚚 Envío:
+🚚 *Envío:*
 $${envio.toFixed(2)}
 
-💵 TOTAL:
-$${(total + envio).toFixed(2)}`;
+💵 *TOTAL:*
+$${(total + envio).toFixed(2)}
+`;
 
 window.open(
 `https://wa.me/593995199354?text=${encodeURIComponent(mensaje)}`,
