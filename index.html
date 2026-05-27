@@ -1293,11 +1293,31 @@ document.getElementById('productsContainer')
 
 <div class="product-card">
 
-<div class="product-image">
+<div class="product-image" style="position:relative;">
 
-<img id="${id}Image"
-src="images/${id}3ml.png"
-onerror="this.onerror=null;this.src='images/${id}3ml.jpg';">
+  <img id="${id}Image"
+  src="images/${id}3ml.png"
+  onerror="this.onerror=null;this.src='images/${id}3ml.jpg';">
+
+  <button
+    style="
+    position:absolute;
+    top:10px;
+    left:10px;
+    padding:6px 10px;
+    font-size:11px;
+    background:rgba(0,0,0,.7);
+    color:white;
+    border:1px solid #444;
+    border-radius:8px;
+    cursor:pointer;
+    z-index:10;
+    "
+    onclick="openProductModal('${nombre}', '${id}')">
+
+    Ver más
+
+  </button>
 
 </div>
 
@@ -1340,24 +1360,6 @@ selectedSize['${id}'],
 selectedPrice['${id}'],
 selectedImage['${id}']
 )">
-<button
-style="
-margin-top:10px;
-width:100%;
-padding:12px;
-border:1px solid #444;
-background:transparent;
-color:white;
-border-radius:12px;
-cursor:pointer;
-font-weight:600;
-transition:.3s;
-"
-onclick="openProductModal('${nombre}', '${id}')">
-
-Ver más
-
-</button>
 
 Agregar al carrito
 
