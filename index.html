@@ -1327,6 +1327,7 @@ rows.forEach(row => {
 const cols = row.split(',');
 
 const nombre = cols[0]?.trim();
+if(!nombre) return;
 
 const precio3 = cols[1]?.trim();
 const precio5 = cols[2]?.trim();
@@ -1335,14 +1336,7 @@ const precio100 = cols[4]?.trim();
 const notas = cols[5]?.trim();
 const ocasiones = cols[6]?.trim();
 
-selectedNotas = selectedNotas || {};
-selectedOcasiones = selectedOcasiones || {};
-
-selectedNotas[id] = notas;
-selectedOcasiones[id] = ocasiones;  
-
-if(!nombre) return;
-
+// 🔥 ID PRIMERO (OBLIGATORIO)
 const id =
 nombre
 .toLowerCase()
@@ -1350,14 +1344,22 @@ nombre
 .replace(/[\u0300-\u036f]/g, "")
 .replace(/[^a-z0-9]/gi,'');
 
+// inicializar objetos si no existen
+selectedNotas = selectedNotas || {};
+selectedOcasiones = selectedOcasiones || {};
+
+// guardar datos del sheet
+selectedNotas[id] = notas;
+selectedOcasiones[id] = ocasiones;
+
+// estado inicial
 selectedSize[id] = '3ml';
 selectedPrice[id] = precio3;
-selectedImage[id] =
-`images/${id}3ml.png`;
+selectedImage[id] = `images/${id}3ml.png`;
 
+// render
 document.getElementById('productsContainer')
 .innerHTML += `
-
 <div class="product-card">
 
 <div class="product-image" style="position:relative;">
@@ -1395,24 +1397,16 @@ document.getElementById('productsContainer')
 <div class="size-options">
 
 <button class="size-btn"
-onclick="changeImage('${id}','3ml','${precio3}')">
-3ml
-</button>
+onclick="changeImage('${id}','3ml','${precio3}')">3ml</button>
 
 <button class="size-btn"
-onclick="changeImage('${id}','5ml','${precio5}')">
-5ml
-</button>
+onclick="changeImage('${id}','5ml','${precio5}')">5ml</button>
 
 <button class="size-btn"
-onclick="changeImage('${id}','10ml','${precio10}')">
-10ml
-</button>
+onclick="changeImage('${id}','10ml','${precio10}')">10ml</button>
 
 <button class="size-btn"
-onclick="changeImage('${id}','100ml','${precio100}')">
-Botella
-</button>
+onclick="changeImage('${id}','100ml','${precio100}')">Botella</button>
 
 </div>
 
@@ -1427,17 +1421,13 @@ selectedSize['${id}'],
 selectedPrice['${id}'],
 selectedImage['${id}']
 )">
-
 Agregar al carrito
-
 </button>
 
 </div>
 
 </div>
-
 `;
-
 });
 
 });
