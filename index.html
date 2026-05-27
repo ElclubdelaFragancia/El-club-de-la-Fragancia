@@ -1254,7 +1254,7 @@ nombre
 selectedSize[id] = '3ml';
 selectedPrice[id] = precio3;
 selectedImage[id] =
-`images/${id}3ml.jpg`;
+`images/${id}3ml.png`;
 
 document.getElementById('productsContainer')
 .innerHTML += `
@@ -1264,7 +1264,8 @@ document.getElementById('productsContainer')
 <div class="product-image">
 
 <img id="${id}Image"
-src="images/${id}3ml.jpg">
+src="images/${id}3ml.png"
+onerror="this.onerror=null;this.src='images/${id}3ml.jpg';">
 
 </div>
 
@@ -1321,11 +1322,18 @@ Agregar al carrito
 });
 
 });
-
 function changeImage(product,size,price){
 
-document.getElementById(product + 'Image').src =
+const img =
+document.getElementById(product + 'Image');
+
+img.src =
+`images/${product}${size}.png`;
+
+img.onerror = function(){
+this.src =
 `images/${product}${size}.jpg`;
+};
 
 document.getElementById(product + 'Price').innerText =
 '$' + price;
@@ -1335,10 +1343,9 @@ selectedSize[product] = size;
 selectedPrice[product] = price;
 
 selectedImage[product] =
-`images/${product}${size}.jpg`;
+img.src;
 
 }
-
 function addToCart(nombre,size,price,image){
 
 cart.push({
