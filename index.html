@@ -30,14 +30,14 @@ header{
 position:fixed;
 top:0;
 width:100%;
-background:rgba(0,0,0,.85);
-backdrop-filter:blur(10px);
-padding:20px 40px;
+background:rgba(0,0,0,.92);
+backdrop-filter:blur(12px);
+padding:18px 45px;
 display:flex;
 justify-content:space-between;
 align-items:center;
 z-index:1000;
-border-bottom:1px solid #222;
+border-bottom:1px solid rgba(255,255,255,.08);
 }
 .decant-grid{
 display:flex;
@@ -69,10 +69,13 @@ margin-top:20px;
 font-size:28px;
 }
 .logo{
-font-size:28px;
-font-weight:700;
-color:#d4af37;
-letter-spacing:2px;
+display:flex;
+align-items:center;
+}
+
+.logo-img{
+height:90px;
+object-fit:contain;
 }
 
 nav{
@@ -83,8 +86,30 @@ gap:25px;
 nav a{
 text-decoration:none;
 color:white;
-font-size:15px;
+font-size:14px;
+letter-spacing:1px;
+font-weight:500;
 transition:.3s;
+position:relative;
+}
+
+nav a:hover{
+color:#d4af37;
+}
+
+nav a::after{
+content:'';
+position:absolute;
+left:0;
+bottom:-6px;
+width:0%;
+height:1px;
+background:#d4af37;
+transition:.3s;
+}
+
+nav a:hover::after{
+width:100%;
 }
 
 nav a:hover{
@@ -372,7 +397,29 @@ text-align:center;
 background:#000;
 border-top:1px solid #222;
 }
+.pulse-btn{
+animation:pulse 2s infinite;
+box-shadow:0 0 0 rgba(212,175,55,.5);
+}
 
+@keyframes pulse{
+
+0%{
+transform:scale(1);
+box-shadow:0 0 0 0 rgba(212,175,55,.6);
+}
+
+70%{
+transform:scale(1.03);
+box-shadow:0 0 0 18px rgba(212,175,55,0);
+}
+
+100%{
+transform:scale(1);
+box-shadow:0 0 0 0 rgba(212,175,55,0);
+}
+
+}
 @media(max-width:768px){
 
 .hero h1{
@@ -384,6 +431,7 @@ padding:20px;
 flex-direction:column;
 gap:15px;
 }
+  
 
 }
 
@@ -396,7 +444,12 @@ gap:15px;
 <header>
 
 <div class="logo">
-CLUB DE LA FRAGANCIA
+
+<img
+src="images/logo.png"
+alt="Logo Club de la Fragancia"
+class="logo-img">
+
 </div>
 
 <nav>
@@ -416,7 +469,9 @@ CLUB DE LA FRAGANCIA
 Fragancias originales en 3ml, 5ml, 10ml o botella completa.
 </p>
 
-<button onclick="document.getElementById('catalogo').scrollIntoView()">
+<button
+class="pulse-btn"
+onclick="document.getElementById('catalogo').scrollIntoView()">
 Explorar Catálogo
 </button>
 
