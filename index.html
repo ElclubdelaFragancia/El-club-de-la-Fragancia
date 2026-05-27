@@ -1181,6 +1181,8 @@ let cart = [];
 let selectedSize = {};
 let selectedPrice = {};
 let selectedImage = {};
+let selectedNotas = {};
+let selectedOcasiones = {};
 
 function updateCartUI(){
 
@@ -1343,10 +1345,6 @@ nombre
 .normalize("NFD")
 .replace(/[\u0300-\u036f]/g, "")
 .replace(/[^a-z0-9]/gi,'');
-
-// inicializar objetos si no existen
-selectedNotas = selectedNotas || {};
-selectedOcasiones = selectedOcasiones || {};
 
 // guardar datos del sheet
 selectedNotas[id] = notas;
