@@ -1276,11 +1276,21 @@ notas,
 ocasiones
 };
 
-document.getElementById('productsContainer')
-.innerHTML += `
+document.getElementById('productsContainer').innerHTML += `
 
 <div class="product-card">
 
+<div class="product-image" style="position:relative;">
+
+<img
+id="${id}Image"
+src="images/${id}3ml.png"
+onclick="openPerfumeModal('${nombre}')"
+style="cursor:pointer;"
+onerror="this.onerror=null;this.src='images/${id}3ml.jpg';">
+
+<button
+onclick="openPerfumeModal('${nombre}')"
 style="
 position:absolute;
 bottom:12px;
@@ -1296,9 +1306,7 @@ backdrop-filter:blur(5px);
 font-size:14px;
 transition:.3s;
 ">
-
 Ver más
-
 </button>
 
 </div>
@@ -1310,24 +1318,16 @@ Ver más
 <div class="size-options">
 
 <button class="size-btn"
-onclick="changeImage('${id}','3ml','${precio3}')">
-3ml
-</button>
+onclick="changeImage('${id}','3ml','${precio3}')">3ml</button>
 
 <button class="size-btn"
-onclick="changeImage('${id}','5ml','${precio5}')">
-5ml
-</button>
+onclick="changeImage('${id}','5ml','${precio5}')">5ml</button>
 
 <button class="size-btn"
-onclick="changeImage('${id}','10ml','${precio10}')">
-10ml
-</button>
+onclick="changeImage('${id}','10ml','${precio10}')">10ml</button>
 
 <button class="size-btn"
-onclick="changeImage('${id}','100ml','${precio100}')">
-Botella
-</button>
+onclick="changeImage('${id}','100ml','${precio100}')">Botella</button>
 
 </div>
 
@@ -1342,18 +1342,12 @@ selectedSize['${id}'],
 selectedPrice['${id}'],
 selectedImage['${id}']
 )">
-
 Agregar al carrito
-
 </button>
 
 </div>
 
-</div>
-
 `;
-
-});
 
 });
 function changeImage(product,size,price){
@@ -1364,9 +1358,8 @@ document.getElementById(product + 'Image');
 img.src =
 `images/${product}${size}.png`;
 
-img.onerror = function(){
-this.src =
-`images/${product}${size}.jpg`;
+img.onerror = function () {
+    this.src = `images/${product}${size}.jpg`;
 };
 
 document.getElementById(product + 'Price').innerText =
