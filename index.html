@@ -417,14 +417,15 @@ padding:20px;
 background:#111;
 padding:30px;
 border-radius:20px;
-width:100%;
-max-width:1000px;
 width:95%;
-max-height:90vh;
+max-width:1200px;
+max-height:92vh;
 overflow:auto;
 border:1px solid #222;
 position:relative;
--webkit-overflow-scrolling:touch;
+transform:translateY(30px) scale(.98);
+opacity:0;
+transition:all .35s ease;
 }
 
 .modal-content input,
@@ -1132,21 +1133,24 @@ Enviar Pedido
 
     <div class="modal-layout">
 
-  <!-- IMAGEN GRANDE -->
-  <div style="flex:1; display:flex; justify-content:center; align-items:center;">
-    <img 
-      id="modalImage"
-      src="images/perfumereco.jpg"
-      style="
-        width:100%;
-        max-width:420px;
-        height:520px;
-        object-fit:cover;
-        border-radius:18px;
-        border:1px solid #2a2a2a;
-        box-shadow:0 20px 60px rgba(0,0,0,.6);
-      ">
-  </div>
+ <div style="flex:1; display:flex; justify-content:center; align-items:flex-start;">
+
+  <img 
+    id="modalImage"
+    src="images/info-perfume.jpg"
+    style="
+      width:100%;
+      max-width:500px;
+      max-height:75vh;
+      object-fit:contain;
+      border-radius:18px;
+      border:1px solid #2a2a2a;
+      box-shadow:0 20px 60px rgba(0,0,0,.6);
+      background:#0c0c0f;
+      padding:10px;
+    ">
+
+</div>
 
   <!-- INFO PREMIUM -->
   <div style="flex:1; display:flex; flex-direction:column; gap:18px;">
@@ -1605,10 +1609,10 @@ document.getElementById('modalTitle').innerText = nombre;
 
 // NOTAS Y OCASIONES DEL SHEET
 document.getElementById('modalNotas').innerHTML =
-"🧪 <b>Notas:</b><br>" + (selectedNotas?.[id] || "No disponible");
+"<b>Notas:</b><br>" + (selectedNotas?.[id] || "No disponible");
 
 document.getElementById('modalOcasiones').innerHTML =
-"🎯 <b>Ocasiones:</b><br>" + (selectedOcasiones?.[id] || "No disponible");
+"<b>Ocasiones:</b><br>" + (selectedOcasiones?.[id] || "No disponible");
 
 }
 
