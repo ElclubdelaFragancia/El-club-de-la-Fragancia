@@ -216,6 +216,67 @@ grid-template-columns:1fr;
 }
 
 }
+  .modal{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.7);
+backdrop-filter:blur(10px);
+justify-content:center;
+align-items:center;
+z-index:2000;
+animation:fadeIn .25s ease;
+}
+
+@keyframes fadeIn{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+.premium-modal{
+max-width:850px;
+width:95%;
+background:#0f0f12;
+border:1px solid #222;
+border-radius:20px;
+padding:25px;
+animation:pop .25s ease;
+}
+
+@keyframes pop{
+from{transform:scale(.95);opacity:0;}
+to{transform:scale(1);opacity:1;}
+}
+
+.modal-layout{
+display:flex;
+gap:20px;
+}
+
+.modal-image img{
+width:280px;
+height:280px;
+object-fit:cover;
+border-radius:15px;
+border:1px solid #222;
+}
+
+.modal-info{
+flex:1;
+color:#ccc;
+line-height:1.8;
+}
+
+@media(max-width:768px){
+.modal-layout{
+flex-direction:column;
+}
+
+.modal-image img{
+width:100%;
+height:260px;
+}
+}
 
   
 .product-card{
@@ -1061,29 +1122,27 @@ Enviar Pedido
 </footer>
 <div class="modal" id="productModal">
 
-  <div class="modal-content">
+  <div class="modal-content premium-modal">
 
     <button class="close-mini" onclick="closeProductModal()">✕</button>
 
-    <h2 id="modalTitle"></h2>
+    <h2 id="modalTitle" style="margin-bottom:20px;"></h2>
 
-    <!-- IMAGEN FIJA (la decides tú) -->
-    <img
-      src="images/info-perfume.jpg"
-      style="
-      width:100%;
-      border-radius:15px;
-      margin-bottom:15px;
-      border:1px solid #222;
-      "
-    >
+    <div class="modal-layout">
 
-    <!-- INFO DEL SHEET -->
-    <div style="margin-top:10px;">
+      <!-- IMAGEN -->
+      <div class="modal-image">
+        <img src="images/info-perfume.jpg">
+      </div>
 
-      <p id="modalNotas" style="color:#ccc;line-height:1.7;margin-bottom:10px;"></p>
+      <!-- INFO -->
+      <div class="modal-info">
 
-      <p id="modalOcasiones" style="color:#aaa;line-height:1.7;"></p>
+        <p id="modalNotas"></p>
+
+        <p id="modalOcasiones" style="margin-top:15px;"></p>
+
+      </div>
 
     </div>
 
@@ -1273,6 +1332,14 @@ const precio3 = cols[1]?.trim();
 const precio5 = cols[2]?.trim();
 const precio10 = cols[3]?.trim();
 const precio100 = cols[4]?.trim();
+const notas = cols[5]?.trim();
+const ocasiones = cols[6]?.trim();
+
+selectedNotas = selectedNotas || {};
+selectedOcasiones = selectedOcasiones || {};
+
+selectedNotas[id] = notas;
+selectedOcasiones[id] = ocasiones;  
 
 if(!nombre) return;
 
@@ -1515,9 +1582,12 @@ document.getElementById('productModal').style.display='flex';
 
 document.getElementById('modalTitle').innerText = nombre;
 
-// por ahora vacío (lo conectamos en paso siguiente)
-document.getElementById('modalNotas').innerText = "";
-document.getElementById('modalOcasiones').innerText = "";
+// NOTAS Y OCASIONES DEL SHEET
+document.getElementById('modalNotas').innerHTML =
+"🧪 <b>Notas:</b><br>" + (selectedNotas?.[id] || "No disponible");
+
+document.getElementById('modalOcasiones').innerHTML =
+"🎯 <b>Ocasiones:</b><br>" + (selectedOcasiones?.[id] || "No disponible");
 
 }
 
