@@ -250,7 +250,8 @@ to{transform:scale(1);opacity:1;}
 
 .modal-layout{
 display:flex;
-gap:20px;
+gap:25px;
+align-items:stretch;
 }
 
 .modal-image img{
@@ -287,7 +288,7 @@ border:1px solid #222;
 transition:.3s;
 }
 #productModal .modal-content{
-max-width:600px;
+max-width:550px;
 }
 .product-card:hover{
 transform:translateY(-5px);
@@ -417,7 +418,8 @@ background:#111;
 padding:30px;
 border-radius:20px;
 width:100%;
-max-width:550px;
+max-width:1000px;
+width:95%;
 max-height:90vh;
 overflow:auto;
 border:1px solid #222;
@@ -1130,21 +1132,52 @@ Enviar Pedido
 
     <div class="modal-layout">
 
-      <!-- IMAGEN -->
-      <div class="modal-image">
-        <img src="images/perfumereco.jpg">
+  <!-- IMAGEN GRANDE -->
+  <div style="flex:1; display:flex; justify-content:center; align-items:center;">
+    <img 
+      id="modalImage"
+      src="images/perfumereco.jpg"
+      style="
+        width:100%;
+        max-width:420px;
+        height:520px;
+        object-fit:cover;
+        border-radius:18px;
+        border:1px solid #2a2a2a;
+        box-shadow:0 20px 60px rgba(0,0,0,.6);
+      ">
+  </div>
+
+  <!-- INFO PREMIUM -->
+  <div style="flex:1; display:flex; flex-direction:column; gap:18px;">
+
+    <div style="
+      background:#0c0c0f;
+      padding:18px;
+      border-radius:14px;
+      border:1px solid #222;
+    ">
+      <div style="font-size:13px; color:#d4af37; margin-bottom:8px; letter-spacing:1px;">
+        NOTAS OLFATIVAS
       </div>
-
-      <!-- INFO -->
-      <div class="modal-info">
-
-        <p id="modalNotas"></p>
-
-        <p id="modalOcasiones" style="margin-top:15px;"></p>
-
-      </div>
-
+      <div id="modalNotas" style="color:#ccc; line-height:1.7; font-size:14px;"></div>
     </div>
+
+    <div style="
+      background:#0c0c0f;
+      padding:18px;
+      border-radius:14px;
+      border:1px solid #222;
+    ">
+      <div style="font-size:13px; color:#d4af37; margin-bottom:8px; letter-spacing:1px;">
+        OCASIONES IDEALES
+      </div>
+      <div id="modalOcasiones" style="color:#ccc; line-height:1.7; font-size:14px;"></div>
+    </div>
+
+  </div>
+
+</div>
 
   </div>
 
