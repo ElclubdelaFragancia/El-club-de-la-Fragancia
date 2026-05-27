@@ -231,20 +231,20 @@ transform:translateY(-5px);
 }
 
 .product-image{
-background:white;
-padding:10px;
+background:#fff;
 height:360px;
 display:flex;
 justify-content:center;
 align-items:center;
 overflow:hidden;
+padding:0;
 }
 
 .product-image img{
 width:100%;
 height:100%;
 object-fit:contain;
-transform:scale(1.15);
+display:block;
 }
 .product-info{
 padding:25px;
@@ -1049,20 +1049,7 @@ Enviar Pedido
 </div>
 
 </div>
-<div class="modal" id="perfumeModal">
 
-<div class="modal-content">
-
-<button class="close-mini"
-onclick="closePerfumeModal()">
-✕
-</button>
-
-<div id="perfumeContent"></div>
-
-</div>
-
-</div>
 <footer>
 
 <p>
@@ -1103,7 +1090,6 @@ let cart = [];
 let selectedSize = {};
 let selectedPrice = {};
 let selectedImage = {};
-let perfumeInfo = {};
 
 function updateCartUI(){
 
@@ -1255,8 +1241,6 @@ const precio3 = cols[1]?.trim();
 const precio5 = cols[2]?.trim();
 const precio10 = cols[3]?.trim();
 const precio100 = cols[4]?.trim();
-const notas = cols[5]?.trim();
-const ocasiones = cols[6]?.trim();
 
 if(!nombre) return;
 
@@ -1271,35 +1255,17 @@ selectedSize[id] = '3ml';
 selectedPrice[id] = precio3;
 selectedImage[id] =
 `images/${id}3ml.png`;
-  perfumeInfo[nombre] = {
-notas,
-ocasiones
-};
 
 document.getElementById('productsContainer')
 .innerHTML += `
 
 <div class="product-card">
 
-style="
-position:absolute;
-bottom:12px;
-left:12px;
-padding:10px 18px;
-border:none;
-border-radius:30px;
-background:rgba(0,0,0,.75);
-color:white;
-font-weight:600;
-cursor:pointer;
-backdrop-filter:blur(5px);
-font-size:14px;
-transition:.3s;
-">
+<div class="product-image">
 
-Ver más
-
-</button>
+<img id="${id}Image"
+src="images/${id}3ml.png"
+onerror="this.onerror=null;this.src='images/${id}3ml.jpg';">
 
 </div>
 
@@ -1378,73 +1344,6 @@ selectedPrice[product] = price;
 
 selectedImage[product] =
 img.src;
-
-}
-  function openPerfumeModal(nombre){
-
-const data = perfumeInfo[nombre];
-
-if(!data){
-
-return;
-
-}
-
-document.getElementById('perfumeContent').innerHTML = `
-
-<h2 style="
-margin-bottom:20px;
-font-size:32px;
-">
-${nombre}
-</h2>
-
-<div style="
-line-height:1.9;
-color:#ccc;
-font-size:16px;
-">
-
-🌸 <b>Notas:</b><br>
-${data.notas}
-<br><br>
-
-✨ <b>Ocasiones de uso:</b><br>
-${data.ocasiones}
-<br><br>
-
-💡 <b>Tips de aplicación:</b><br>
-
-• Aplicar en puntos de pulso<br>
-• Cuello y detrás de orejas<br>
-• No frotar el perfume<br>
-• Aplicar sobre piel hidratada<br>
-• También puede aplicarse en ropa con cuidado de no usar perfumes de colores que pueden manchar
-
-</div>
-
-<img
-src="images/pulsos.jpg"
-style="
-width:100%;
-max-width:280px;
-display:block;
-margin:30px auto 0 auto;
-border-radius:18px;
-border:1px solid #222;
-">
-
-`;
-
-document.getElementById('perfumeModal')
-.style.display = 'flex';
-
-}
-
-function closePerfumeModal(){
-
-document.getElementById('perfumeModal')
-.style.display = 'none';
 
 }
 function addToCart(nombre,size,price,image){
@@ -1750,124 +1649,7 @@ window.open(
 );
 
 }
-const perfumeData = {
 
-"Yara": {
-imagen:"images/yara10ml.jpg",
-
-descripcion:`
-<h2 style="margin-bottom:20px;">Yara</h2>
-
-<img src="images/yara10ml.jpg"
-style="
-width:100%;
-border-radius:18px;
-margin-bottom:20px;
-background:white;
-padding:10px;
-">
-
-<p style="line-height:1.8;color:#ccc;">
-
-🌸 <b>Tipo:</b> Dulce Cremoso Femenino<br><br>
-
-🍓 <b>Notas de salida:</b>
-Heliotropo, orquídea y mandarina.<br><br>
-
-🍦 <b>Notas de corazón:</b>
-Acordes tropicales y gourmand.<br><br>
-
-🪵 <b>Notas de fondo:</b>
-Vainilla, sándalo y almizcle.<br><br>
-
-☀️ <b>Ideal para:</b>
-Citas, salidas, uso diario y clima fresco.<br><br>
-
-⏳ <b>Duración:</b>
-7-9 horas aprox.<br><br>
-
-💡 <b>Tips de aplicación:</b><br>
-• Aplicar detrás de orejas<br>
-• Cuello y muñecas<br>
-• Ropa para mayor duración<br><br>
-
-🔥 Perfume viral y extremadamente adictivo.
-
-</p>
-`
-},
-
-"9PM": {
-imagen:"images/9pm10ml.jpg",
-
-descripcion:`
-<h2 style="margin-bottom:20px;">9PM</h2>
-
-<img src="images/9pm10ml.jpg"
-style="
-width:100%;
-border-radius:18px;
-margin-bottom:20px;
-background:white;
-padding:10px;
-">
-
-<p style="line-height:1.8;color:#ccc;">
-
-🌙 <b>Tipo:</b> Dulce nocturno masculino<br><br>
-
-🍏 <b>Salida:</b>
-Manzana, canela y lavanda.<br><br>
-
-🍦 <b>Fondo:</b>
-Vainilla y ámbar.<br><br>
-
-🔥 <b>Perfecto para:</b>
-Fiestas, citas y noches.<br><br>
-
-⏳ <b>Duración:</b>
-8-10 horas.<br><br>
-
-💡 <b>Tip:</b>
-No sobre aplicar, tiene mucha proyección.
-
-</p>
-`
-}
-
-};
-
-function openPerfumeModal(nombre){
-
-const data = perfumeData[nombre];
-
-if(!data){
-
-document.getElementById('perfumeContent').innerHTML = `
-<h2>${nombre}</h2>
-<p style="margin-top:15px;color:#ccc;">
-Próximamente información detallada de esta fragancia.
-</p>
-`;
-
-}else{
-
-document.getElementById('perfumeContent').innerHTML =
-data.descripcion;
-
-}
-
-document.getElementById('perfumeModal')
-.style.display = 'flex';
-
-}
-
-function closePerfumeModal(){
-
-document.getElementById('perfumeModal')
-.style.display = 'none';
-
-}
 </script>
 
 </body>
