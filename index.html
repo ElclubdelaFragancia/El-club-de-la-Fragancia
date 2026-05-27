@@ -195,13 +195,29 @@ font-size:18px;
 
 .products-grid{
 display:grid;
-grid-template-columns:repeat(3,1fr);
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
 gap:35px;
 max-width:1400px;
 margin:auto;
 margin-top:60px;
 }
+.clientes-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+max-width:1300px;
+margin:60px auto 0 auto;
+}
 
+@media(max-width:768px){
+
+.clientes-grid{
+grid-template-columns:1fr;
+}
+
+}
+
+  
 .product-card{
 background:#101014;
 border-radius:25px;
@@ -597,14 +613,8 @@ Clientes
 Experiencias reales de clientes que ya probaron nuestras fragancias.
 </p>
 
-<div style="
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-max-width:1300px;
-margin:60px auto 0 auto;
-">
-
+<div class="clientes-grid">
+  
 <!-- TESTIMONIO 1 -->
 <div>
 
