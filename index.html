@@ -225,7 +225,9 @@ overflow:hidden;
 border:1px solid #222;
 transition:.3s;
 }
-
+#productModal .modal-content{
+max-width:600px;
+}
 .product-card:hover{
 transform:translateY(-5px);
 }
@@ -1057,7 +1059,37 @@ Enviar Pedido
 </p>
 
 </footer>
+<div class="modal" id="productModal">
 
+  <div class="modal-content">
+
+    <button class="close-mini" onclick="closeProductModal()">✕</button>
+
+    <h2 id="modalTitle"></h2>
+
+    <!-- IMAGEN FIJA (la decides tú) -->
+    <img
+      src="images/info-perfume.jpg"
+      style="
+      width:100%;
+      border-radius:15px;
+      margin-bottom:15px;
+      border:1px solid #222;
+      "
+    >
+
+    <!-- INFO DEL SHEET -->
+    <div style="margin-top:10px;">
+
+      <p id="modalNotas" style="color:#ccc;line-height:1.7;margin-bottom:10px;"></p>
+
+      <p id="modalOcasiones" style="color:#aaa;line-height:1.7;"></p>
+
+    </div>
+
+  </div>
+
+</div>
 <script>
 
 window.onload = function(){
@@ -1308,6 +1340,24 @@ selectedSize['${id}'],
 selectedPrice['${id}'],
 selectedImage['${id}']
 )">
+<button
+style="
+margin-top:10px;
+width:100%;
+padding:12px;
+border:1px solid #444;
+background:transparent;
+color:white;
+border-radius:12px;
+cursor:pointer;
+font-weight:600;
+transition:.3s;
+"
+onclick="openProductModal('${nombre}', '${id}')">
+
+Ver más
+
+</button>
 
 Agregar al carrito
 
@@ -1457,7 +1507,21 @@ shippingCost = 6.75;
 updateCartUI();
 
 }
+function openProductModal(nombre, id){
 
+document.getElementById('productModal').style.display='flex';
+
+document.getElementById('modalTitle').innerText = nombre;
+
+// por ahora vacío (lo conectamos en paso siguiente)
+document.getElementById('modalNotas').innerText = "";
+document.getElementById('modalOcasiones').innerText = "";
+
+}
+
+function closeProductModal(){
+document.getElementById('productModal').style.display='none';
+}
 function calcularEnvio(){
 
 const zona =
