@@ -624,7 +624,7 @@ line-height:1.7;
 font-size:14px;
 text-align:center;
 ">
-“Aquí colocas el testimonio del cliente 1.”
+“"Super confiable, recibí todos los productos que compré, 10/10 el olor de los perfumes"”
 </p>
 
 </div>
@@ -648,7 +648,7 @@ line-height:1.7;
 font-size:14px;
 text-align:center;
 ">
-“Aquí colocas el testimonio del cliente 2.”
+“ 100% Recomendado y seguro y los perfumes huelen delicioso”
 </p>
 
 </div>
@@ -672,7 +672,7 @@ line-height:1.7;
 font-size:14px;
 text-align:center;
 ">
-“Aquí colocas el testimonio del cliente 3.”
+“Increíble atención, recibí los productos tal como se muestran, me encantaron las fragancias.”
 </p>
 
 </div>
@@ -696,7 +696,7 @@ line-height:1.7;
 font-size:14px;
 text-align:center;
 ">
-“Aquí colocas el testimonio del cliente 4.”
+“ colocas el testimonio del cliente 4.”
 </p>
 
 </div>
@@ -720,7 +720,7 @@ line-height:1.7;
 font-size:14px;
 text-align:center;
 ">
-“Aquí colocas el testimonio del cliente 5.”
+“ Perfumes Elegantes y buenos si lo recomendaría”
 </p>
 
 </div>
@@ -744,7 +744,7 @@ line-height:1.7;
 font-size:14px;
 text-align:center;
 ">
-“Aquí colocas el testimonio del cliente 6.”
+“100% Confiable y me encantaron los perfumes”
 </p>
 
 </div>
@@ -966,7 +966,7 @@ Fuera de Quito
 
 </select>
 
-<select id="zonaQuito" class="hidden" onchange="calcularEnvio()">
+<select id="zonto" class="hidden" onchange="calcularEnvio()">
 
 <option value="">
 Selecciona zona de Quito
@@ -990,7 +990,7 @@ id="direccionQuito"
 placeholder="Dirección">
 
 <input
-id="referenciaQuito"
+id="referencito"
 placeholder="Referencia">
 
 <input
@@ -1411,7 +1411,7 @@ document.getElementById('quitoFields')
 document.getElementById('fueraFields')
 .classList.add('hidden');
 
-document.getElementById('zonaQuito')
+document.getElementById('zonto')
 .classList.add('hidden');
 
 if(ciudad === 'quito'){
@@ -1419,7 +1419,7 @@ if(ciudad === 'quito'){
 document.getElementById('quitoFields')
 .classList.remove('hidden');
 
-document.getElementById('zonaQuito')
+document.getElementById('zonto')
 .classList.remove('hidden');
 
 shippingCost = null;
@@ -1442,7 +1442,7 @@ updateCartUI();
 function calcularEnvio(){
 
 const zona =
-document.getElementById('zonaQuito').value;
+document.getElementById('zonto').value;
 
 if(zona === 'perimetro'){
 
@@ -1493,8 +1493,8 @@ document.getElementById('ciudad')?.value || '';
 const direccionQuito =
 document.getElementById('direccionQuito')?.value || '';
 
-const referenciaQuito =
-document.getElementById('referenciaQuito')?.value || '';
+const referencito =
+document.getElementById('referencito')?.value || '';
 
 const barrioQuito =
 document.getElementById('barrioQuito')?.value || '';
@@ -1563,7 +1563,7 @@ datosEnvio = `
 ${direccionQuito}
 
 🧭 Referencia:
-${referenciaQuito}
+${referencito}
 
 🏘️ Barrio:
 ${barrioQuito}
