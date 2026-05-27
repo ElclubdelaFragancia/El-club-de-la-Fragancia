@@ -1093,20 +1093,18 @@ alert('Por favor ingresa nombres y apellidos');
 
 return;
 
-}
-  if(modalidad === ''){
+const fecha =
+document.getElementById('fecha').value;
+
+const modalidad =
+document.getElementById('modalidad').value;
+if(modalidad === ''){
 
 alert('Por favor selecciona la modalidad de venta');
 
 return;
 
 }
-
-const fecha =
-document.getElementById('fecha').value;
-
-const modalidad =
-document.getElementById('modalidad').value;
 
 const ciudad =
 document.getElementById('ciudad')?.value || '';
