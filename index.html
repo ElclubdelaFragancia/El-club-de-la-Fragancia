@@ -239,8 +239,8 @@ to{transform:scale(1);opacity:1;}
 
 .modal-layout{
 display:flex;
-gap:40px;
-align-items:center;
+gap:30px;
+align-items:flex-start;
 }
 .modal-image img{
 width:280px;
@@ -276,7 +276,8 @@ border:1px solid #222;
 transition:.3s;
 }
 #productModal .modal-content{
-max-width:550px;
+max-width:95vw;
+width:95vw;
 }
 .product-card:hover{
 transform:translateY(-5px);
@@ -1148,21 +1149,22 @@ Enviar Pedido
   id="modalImage"
   src="images/perfumereco.jpg"
   style="
-    width:100%;
-    max-width:650px;
-    max-height:85vh;
-    object-fit:contain;
-    border-radius:18px;
-    border:1px solid #2a2a2a;
-    box-shadow:0 25px 80px rgba(0,0,0,.65);
-    background:#0c0c0f;
-    padding:10px;
-  ">
+width:100%;
+max-width:100%;
+height:auto;
+max-height:88vh;
+object-fit:contain;
+border-radius:18px;
+border:1px solid #2a2a2a;
+box-shadow:0 25px 80px rgba(0,0,0,.65);
+background:#0c0c0f;
+padding:10px;
+">
 
 </div>
 
   <!-- INFO PREMIUM -->
-  <div style="flex:1; display:flex; flex-direction:column; gap:18px;">
+  <div style="flex:2; display:flex; justify-content:center; align-items:flex-start;">
 
     <div style="
       background:#0c0c0f;
