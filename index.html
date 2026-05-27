@@ -585,7 +585,7 @@ Fuera de Quito
 
 </select>
 
-<select id="zonaQuito" class="hidden" onchange="updateCartUI()">
+<select id="zonaQuito" class="hidden" onchange="calcularEnvio()">
 
 <option value="">
 Selecciona zona de Quito
@@ -601,25 +601,49 @@ Fuera del perímetro $4.50
 
 </select>
 
+<!-- QUITO -->
 <div id="quitoFields" class="hidden">
 
-<input placeholder="Dirección">
-<input placeholder="Referencia">
-<input placeholder="Barrio">
+<input
+id="direccionQuito"
+placeholder="Dirección">
+
+<input
+id="referenciaQuito"
+placeholder="Referencia">
+
+<input
+id="barrioQuito"
+placeholder="Barrio">
 
 </div>
 
+<!-- FUERA DE QUITO -->
 <div id="fueraFields" class="hidden">
 
 <p style="margin-bottom:15px;color:#ccc;">
 El envío se realiza mediante Servientrega.
 </p>
 
-<input placeholder="Nombres completos de quien recibe">
-<input placeholder="Cédula">
-<input placeholder="Dirección">
-<input placeholder="Referencia">
-<input placeholder="Celular">
+<input
+id="nombreServi"
+placeholder="Nombres completos de quien recibe">
+
+<input
+id="cedulaServi"
+placeholder="Cédula">
+
+<input
+id="direccionServi"
+placeholder="Dirección">
+
+<input
+id="referenciaServi"
+placeholder="Referencia">
+
+<input
+id="celularServi"
+placeholder="Celular">
 
 </div>
 
@@ -993,6 +1017,25 @@ notaRetiro.style.display = 'none';
 
 }
 
+else if(modalidad === 'retiro'){
+
+deliveryFields.classList.add('hidden');
+notaRetiro.style.display = 'block';
+
+shippingCost = 0;
+updateCartUI();
+
+}
+
+else{
+
+deliveryFields.classList.add('hidden');
+notaRetiro.style.display = 'none';
+
+}
+
+}
+
 function toggleCiudadYEnvio(){
 
 const ciudad =
@@ -1072,23 +1115,36 @@ document.getElementById('fecha').value;
 
 const modalidad =
 document.getElementById('modalidad').value;
-  const direccion =
-document.getElementById('direccion')?.value || '';
 
-const referencia =
-document.getElementById('referencia')?.value || '';
+const ciudad =
+document.getElementById('ciudad')?.value || '';
 
-const servientrega =
-document.getElementById('servientrega')?.value || '';
-  
-  let mensajeRetiro = '';
+// QUITO
+const direccionQuito =
+document.getElementById('direccionQuito')?.value || '';
 
-if (modalidad === 'retiro') {
-mensajeRetiro = `
-📍 El punto y horario de retiro se coordina por WhatsApp.
-Da clic en “Enviar pedido” para dirigirte a WhatsApp y contactarte con un asesor.
-`;
-}
+const referenciaQuito =
+document.getElementById('referenciaQuito')?.value || '';
+
+const barrioQuito =
+document.getElementById('barrioQuito')?.value || '';
+
+// SERVIENTREGA
+const nombreServi =
+document.getElementById('nombreServi')?.value || '';
+
+const cedulaServi =
+document.getElementById('cedulaServi')?.value || '';
+
+const direccionServi =
+document.getElementById('direccionServi')?.value || '';
+
+const referenciaServi =
+document.getElementById('referenciaServi')?.value || '';
+
+const celularServi =
+document.getElementById('celularServi')?.value || '';
+
 let productos = '';
 
 cart.forEach(p=>{
@@ -1101,8 +1157,20 @@ productos +=
 let total = 0;
 
 cart.forEach(item => {
-total += parseFloat(item.price);
+
+let precio = parseFloat(item.price);
+
+if(isNaN(precio)) precio = 0;
+
+total += precio;
+
 });
+
+let envio =
+shippingCost === null ? 0 : parseFloat(shippingCost);
+
+if(isNaN(envio)) envio = 0;
+
 let datosEnvio = '';
 
 if (modalidad === 'retiro') {
@@ -1111,6 +1179,7 @@ datosEnvio = `
 🚚 MODALIDAD: RETIRO
 
 📍 El punto y horario de retiro se coordina por WhatsApp.
+Da clic en “Enviar pedido” para contactarte con un asesor.
 `;
 
 }
@@ -1121,10 +1190,13 @@ datosEnvio = `
 🚚 MODALIDAD: ENTREGA LOCAL (QUITO)
 
 📍 Dirección:
-${direccion}
+${direccionQuito}
 
 🧭 Referencia:
-${referencia}
+${referenciaQuito}
+
+🏘️ Barrio:
+${barrioQuito}
 `;
 
 }
@@ -1134,18 +1206,22 @@ else if (modalidad === 'entrega' && ciudad === 'fuera') {
 datosEnvio = `
 📦 MODALIDAD: ENVÍO POR SERVIENTREGA
 
-📋 DATOS PARA LA GUÍA:
+📋 DATOS PARA LA GUÍA
+
+👤 Nombre:
+${nombreServi}
+
+🪪 Cédula:
+${cedulaServi}
 
 📍 Dirección:
-${direccion}
+${direccionServi}
 
 🧭 Referencia:
-${referencia}
+${referenciaServi}
 
-👤 Destinatario:
-${nombre}
-
-🚚 Servicio: Servientrega
+📱 Celular:
+${celularServi}
 `;
 
 }
@@ -1162,14 +1238,19 @@ ${fecha}
 ${modalidad}
 
 🚚 INFORMACIÓN DE ENVÍO:
-
 ${datosEnvio}
 
 🧴 Productos:
 ${productos}
 
-💰 Total:
-$${total.toFixed(2)}`;
+💰 Subtotal:
+$${total.toFixed(2)}
+
+🚚 Envío:
+$${envio.toFixed(2)}
+
+💵 TOTAL:
+$${(total + envio).toFixed(2)}`;
 
 window.open(
 `https://wa.me/593995199354?text=${encodeURIComponent(mensaje)}`,
