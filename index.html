@@ -1628,6 +1628,17 @@ function calcularEnvio(){
 
 const zona =
 document.getElementById('zonto').value;
+  if(
+modalidad === 'entrega' &&
+ciudad === 'quito' &&
+zona === ''
+){
+
+alert('Por favor selecciona una zona de Quito');
+
+return;
+
+}
 
 if(zona === 'perimetro'){
 
@@ -1673,7 +1684,13 @@ return;
 
 const ciudad =
 document.getElementById('ciudad')?.value || '';
+if(modalidad === 'entrega' && ciudad === ''){
 
+alert('Por favor selecciona una ciudad');
+
+return;
+
+}
 // QUITO
 const direccionQuito =
 document.getElementById('direccionQuito')?.value || '';
